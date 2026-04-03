@@ -1,0 +1,20 @@
+mixed-port: 7890
+allow-lan: true
+mode: rule
+log-level: info
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+
+  nameserver:
+    - 1.1.1.1
+    - 8.8.8.8
+
+  fallback:
+    - 1.0.0.1
+    - 8.8.4.4
+
+  nameserver-policy:
+    "*.bestvmr.com": 47.110.75.65:8053
