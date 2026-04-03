@@ -1,15 +1,34 @@
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  ipv6: false
+[custom]
+# 1. 继承官方 ACL4SSR 全分组去广告版作为地基
+ruleset=https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_AdblockPlus.ini
 
-  default-nameserver:
-    - 223.5.5.5
-    - 1.1.1.1
+# 2. 基础通用设置
+[general]
+allow-lan=true
+log-level=info
+mixed-port=7890
+external-controller=127.0.0.1:9090
+ipv6=false
 
-  nameserver:
-    - https://dns.alidns.com/dns-query
-    - https://1.1.1.1/dns-query
+# 3. 强制覆盖 DNS 设置（解决连接问题的核心）
+[dns]
+enable=true
+ipv6=false
+listen=0.0.0.0:53
+enhanced-mode=fake-ip
+fake-ip-range=198.18.0.1/16
 
-  nameserver-policy:
-    "*.bestvmr.com": "47.110.75.65:8053"
+# 默认解析服务器（用于解析普通域名）
+nameserver=
+  - https://doh.pub/dns-query
+  - https://dns.alidns.com/dns-query
+  - 114.114.114.114
+
+# 关键注入：针对 bestvmr.com 的特殊解析规则
+# 即使官方模板更新，这两行也会强制保留，确保你的节点永不掉线
+nameserver-policy:
+  "*.bestvmr.com": "47.110.75.65:8053"
+  "bestvmr.com": "47.110.75.65:8053"
+
+# 4. 这里的 [proxy-group] 和 [rule] 不需要重复写
+# 转换器会自动从上面的 ruleset 地址拉取所有的广告拦截规则和节点分组
