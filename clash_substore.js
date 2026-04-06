@@ -1,94 +1,109 @@
 /**
- * Sub Store 文件脚本
- * 用途：从多个 Sub Store 订阅 URL 拉取节点，
- *       动态注入到 Clash Meta 模板的 proxy-providers 中
+ * Sub Store 文件脚本 - Clash 模板注入
+ * ─────────────────────────────────────
+ * 原理：
+ *   通过 Sub Store 内部 API 读取指定订阅或组合订阅的信息，
+ *   动态生成 proxy-providers 块，注入到 GitHub 托管的 Clash 模板中。
  *
- * 使用方式：
- *   Sub Store → 文件管理 → 新建文件
- *     类型：文件
- *     来源：远程
- *     链接：你的 Clash_Templet.ini 的 raw URL
- *   → 脚本操作 → 粘贴此脚本
- *   → 参数编辑中填入 providers（见下方说明）
+ * 使用步骤：
+ *   1. Sub Store → 文件管理 → 新建文件
+ *        类型：文件
+ *        来源：远程
+ *        链接：Clash_Templet.ini 的 GitHub raw URL
+ *   2. 脚本操作 → 类型选「链接」→ 填入此脚本的 GitHub raw URL
+ *   3. 参数编辑中添加：
+ *        key:   name
+ *        value: 订阅或组合订阅的名称
+ *        key:   type
+ *        value: subscription（单条）或 collection（组合），默认 collection
  *
- * 参数（在 Sub Store 参数编辑中设置）：
- *   key: providers
- *   value: JSON 数组，格式如下（每项是一个 Sub Store 订阅的 raw URL）：
- *   [
- *     {"name":"SaySS",  "url":"https://你的substore地址/download/SaySS?target=clash"},
- *     {"name":"BitzNet","url":"https://你的substore地址/download/BitzNet?target=clash"}
- *   ]
+ * $argument 格式：name=你的订阅名&type=collection
  */
 
-// ── 入口：Sub Store 会把参数注入到 $argument，文件内容注入到 $content ──
 async function main() {
-  // 1. 解析参数中的 providers 列表
-  const providers = parseProviders($argument);
-  if (!providers.length) {
-    throw new Error("[clash_substore] 参数 providers 为空，请在参数编辑中填写机场列表");
+  // ── 1. 解析参数 ─────────────────────────────────────────────────────────
+  const args = parseArgument($argument);
+  const subName = args["name"];
+  const subType = args["type"] || "collection"; // 默认组合订阅
+
+  if (!subName) {
+    throw new Error("缺少参数 name，请在参数编辑中填写订阅名称");
   }
 
-  // 2. 拉取模板（$content 已是模板文件内容）
+  const baseUrl = ($substore.env && $substore.env.base_url) || "http://127.0.0.1:2999";
+
+  // ── 2. 根据类型获取 providers 列表 ─────────────────────────────────────
+  let providers = [];
+
+  if (subType === "collection") {
+    // 组合订阅：找到成员列表，每个成员单独作为一个 provider
+    const collections = await $substore.storage.getItem("collections") || [];
+    const collection = collections.find(c => c.name === subName);
+    if (!collection) {
+      throw new Error(`找不到组合订阅「${subName}」`);
+    }
+    const memberNames = collection.subscriptions || [];
+    if (!memberNames.length) {
+      throw new Error(`组合订阅「${subName}」里没有任何订阅`);
+    }
+    providers = memberNames.map(name => ({
+      name,
+      url: `${baseUrl}/download/${encodeURIComponent(name)}?target=clash`,
+    }));
+
+  } else if (subType === "subscription") {
+    // 单条订阅：直接作为一个 provider
+    const subscriptions = await $substore.storage.getItem("subscriptions") || [];
+    const sub = subscriptions.find(s => s.name === subName);
+    if (!sub) {
+      throw new Error(`找不到订阅「${subName}」`);
+    }
+    providers = [{
+      name: subName,
+      url: `${baseUrl}/download/${encodeURIComponent(subName)}?target=clash`,
+    }];
+
+  } else {
+    throw new Error(`未知的 type 参数「${subType}」，请填 collection 或 subscription`);
+  }
+
+  // ── 3. 构建 proxy-providers YAML 块 ─────────────────────────────────────
+  const providerYaml = providers.map(({ name, url }) => [
+    `  ${name}:`,
+    `    type: http`,
+    `    url: "${url}"`,
+    `    interval: 86400`,
+    `    path: ./providers/${name}.yaml`,
+    `    health-check:`,
+    `      enable: true`,
+    `      interval: 600`,
+    `      url: "https://www.gstatic.com/generate_204"`,
+  ].join("\n")).join("\n");
+
+  const providerBlock = "proxy-providers:\n" + providerYaml;
+
+  // ── 4. 注入到模板 ────────────────────────────────────────────────────────
   let template = $content;
-  if (!template || !template.includes("proxy-providers")) {
-    throw new Error("[clash_substore] 模板内容异常，请检查文件链接是否正确");
+  const pattern = /^proxy-providers:[\s\S]*?(?=^\w)/m;
+
+  if (pattern.test(template)) {
+    template = template.replace(pattern, providerBlock + "\n");
+  } else {
+    template = template.replace("proxy-groups:", providerBlock + "\nproxy-groups:");
   }
 
-  // 3. 为每个机场构建 proxy-provider 块并组装
-  const providerBlock = buildProviderBlock(providers);
-
-  // 4. 替换模板中的 proxy-providers 区块
-  template = injectProviders(template, providerBlock);
-
-  // 5. 返回最终配置
   return template;
 }
 
-// ── 解析参数 ──────────────────────────────────────────────────────────────
-function parseProviders(argument) {
-  // argument 是 Sub Store 传入的参数字符串，格式为 key=value 或 JSON
-  // 我们约定 providers 参数直接是 JSON 字符串
-  try {
-    // 尝试从 key=value 格式里取 providers
-    const match = argument.match(/providers=(.+)/s);
-    const raw = match ? match[1] : argument;
-    return JSON.parse(decodeURIComponent(raw));
-  } catch (e) {
-    throw new Error("[clash_substore] providers 参数解析失败，请确认是合法的 JSON 数组：" + e.message);
-  }
-}
-
-// ── 构建 proxy-providers YAML 块 ──────────────────────────────────────────
-function buildProviderBlock(providers) {
-  const blocks = providers.map(({ name, url }) => {
-    // Sub Store 的 Clash 订阅 URL 直接作为 proxy-provider 的 url
-    return [
-      `  ${name}:`,
-      `    type: http`,
-      `    url: "${url}"`,
-      `    interval: 86400`,
-      `    path: ./providers/${name}.yaml`,
-      `    health-check:`,
-      `      enable: true`,
-      `      interval: 600`,
-      `      url: "https://www.gstatic.com/generate_204"`,
-    ].join("\n");
+// ── 工具函数：解析 key=value&key2=value2 格式的参数 ──────────────────────
+function parseArgument(argument) {
+  const result = {};
+  if (!argument) return result;
+  argument.split("&").forEach(pair => {
+    const [key, ...rest] = pair.split("=");
+    if (key) result[decodeURIComponent(key)] = decodeURIComponent(rest.join("="));
   });
-
-  return "proxy-providers:\n" + blocks.join("\n");
-}
-
-// ── 将 provider 块注入模板 ────────────────────────────────────────────────
-function injectProviders(template, providerBlock) {
-  // 匹配 proxy-providers: 到下一个顶级 key 之间的内容（包含空值情况）
-  const pattern = /^proxy-providers:[\s\S]*?(?=^\w|\Z)/m;
-
-  if (pattern.test(template)) {
-    return template.replace(pattern, providerBlock + "\n");
-  } else {
-    // 找不到则插入到 proxy-groups 之前
-    return template.replace("proxy-groups:", providerBlock + "\nproxy-groups:");
-  }
+  return result;
 }
 
 // ── 执行 ──────────────────────────────────────────────────────────────────
@@ -96,5 +111,5 @@ main().then(result => {
   $done(result);
 }).catch(err => {
   console.error("[clash_substore] 脚本执行失败：" + err.message);
-  $done(""); // 出错时返回空字符串，Sub Store 会报错而不是崩溃
+  $done("");
 });
