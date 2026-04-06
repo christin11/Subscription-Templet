@@ -25,23 +25,28 @@ log(`① 模板读取成功，长度 ${template.length}`);
 
 // ── 2. 拉取订阅节点（Clash 格式）────────────────────────────────────────
 log(`② 读取${type === 'collection' ? '组合' : ''}订阅: ${name}`);
-const proxiesYaml = await produceArtifact({
+let proxiesYaml = await produceArtifact({
   name,
   type,
   platform: 'Clash',
 });
-log(`② 节点数据获取成功，长度 ${proxiesYaml.length}`);
+
+// 🔥 新增：清洗非法控制字符 (关键修复)
+// 1. 移除 ASCII 控制字符 (\x00-\x1F, \x7F)
+// 2. 移除常见的 Unicode 不可打印字符
+proxiesYaml = proxiesYaml.replace(/[\x00-\x1F\x7F-\x9F]/g, "");
+
+log(`② 节点数据获取并清洗成功`);
 
 // ── 3. 构建 proxy-providers 块 ───────────────────────────────────────────
-// 保持你原有的 6 格缩进逻辑
+// 这里的 6 格缩进必须严格使用空格，严禁使用 Tab
 const indentedProxies = proxiesYaml
   .split('\n')
   .filter(l => l.trim())
-  .map(l => '      ' + l)
+  .map(l => '      ' + l) // 这里确保是 6 个标准半角空格
   .join('\n');
 
 const providerBlock = `proxy-providers:\n  ${name}:\n    type: inline\n    proxies:\n${indentedProxies}`;
-log(`③ proxy-providers 块构建完成`);
 
 // ── 4. 注入模板，替换 proxy-providers 区块 ───────────────────────────────
 let result = template;
