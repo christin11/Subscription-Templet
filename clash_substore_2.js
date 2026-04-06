@@ -1,58 +1,42 @@
-// Clash 模板注入脚本（文件脚本）
-// 参数：name=订阅名称&type=collection（或 subscription）
-//
-// 脚本链接示例：
-// https://raw.githubusercontent.com/christin11/Subscription-Templet/refs/heads/main/clash_substore.js#name=我的机场&type=collection
+/**
+ * @name Clash全量分流脚本_V2
+ * @description 1.移除参数依赖解决报错 2.严格 1:1 还原模板地区组 3.保留 DIRECT 兼容性
+ */
 
-log('🚀 开始')
+async function operator(proxies) {
+    if (!proxies || proxies.length === 0) return [];
 
-let { type, name } = $arguments
-log(`传入参数 type: ${type}, name: ${name}`)
+    // 1. 过滤掉机场信息节点（流量、日期等）
+    const validProxies = proxies.filter(p => !/流量|重置|过期|套餐/.test(p.name));
+    const proxyNames = validProxies.map(p => p.name);
 
-if (!name) throw new Error('缺少参数 name，请在脚本链接后加 #name=你的订阅名')
-type = /^1$|col|组合/i.test(type) ? 'collection' : 'subscription'
+    // 2. 精准筛选函数：确保每个地区组只包含对应的节点
+    const filter = (re) => {
+        const result = proxyNames.filter(n => re.test(n));
+        return result.length > 0 ? result : []; 
+    };
 
-// ── 1. 读取模板 ──────────────────────────────────────────────────────────
-const template = $content
-if (!template) throw new Error('模板内容为空')
-log(`① 模板读取成功，长度 ${template.length}`)
+    // 3. 定义策略组：名字必须和你模板 (.ini) 里的名字完全一致
+    // 这里的数组不需要包含 DIRECT，因为 Sub-Store 会把你模板里写的 DIRECT 和这里生成的节点合并
+    const groups = [
+        { name: "🇭🇰 香港节点", type: "select", proxies: filter(/香港|HK|Hong/i) },
+        { name: "🇹🇼 台湾节点", type: "select", proxies: filter(/台湾|TW|Taiwan/i) },
+        { name: "🇯🇵 日本节点", type: "select", proxies: filter(/日本|JP|Japan/i) },
+        { name: "🇰🇷 韩国节点", type: "select", proxies: filter(/韩国|KR|Korea/i) },
+        { name: "🇸🇬 新加坡节点", type: "select", proxies: filter(/新加坡|SG|Singapore/i) },
+        { name: "🇹🇭 泰国节点", type: "select", proxies: filter(/泰国|TH|Thailand/i) },
+        { name: "🇺🇸 美国节点", type: "select", proxies: filter(/美国|US|States/i) },
+        { name: "🇩🇪 德国节点", type: "select", proxies: filter(/德国|DE|Germany/i) },
+        { name: "🇬🇧 英国节点", type: "select", proxies: filter(/英国|UK|Britain/i) },
+        
+        // 基础管理组
+        { name: "🚀 手动切换", type: "select", proxies: proxyNames },
+        { name: "♻️ 自动选择", type: "url-test", proxies: proxyNames, url: "http://www.gstatic.com/generate_204", interval: 300 }
+    ];
 
-// ── 2. 拉取订阅节点（Clash 格式）────────────────────────────────────────
-log(`② 读取${type === 'collection' ? '组合' : ''}订阅: ${name}`)
-const proxiesYaml = await produceArtifact({
-  name,
-  type,
-  platform: 'Clash',
-})
-log(`② 节点数据获取成功，长度 ${proxiesYaml.length}`)
-
-// ── 3. 构建 proxy-providers 块 ───────────────────────────────────────────
-// produceArtifact Clash 格式返回完整 proxies 列表，每行如：
-// - name: 节点名\n  type: ss\n  ...
-// 嵌入 inline provider 的 proxies: 字段下，缩进6格
-const indentedProxies = proxiesYaml
-  .split('\n')
-  .filter(l => l.trim())
-  .map(l => '      ' + l)
-  .join('\n')
-
-const providerBlock = `proxy-providers:\n  ${name}:\n    type: inline\n    proxies:\n${indentedProxies}`
-log(`③ proxy-providers 块构建完成`)
-
-// ── 4. 注入模板，替换 proxy-providers 区块 ───────────────────────────────
-let result = template
-const pattern = /^proxy-providers:.*?(?=^\w)/ms
-if (pattern.test(result)) {
-  result = result.replace(pattern, providerBlock + '\n')
-} else {
-  result = result.replace('proxy-groups:', providerBlock + '\nproxy-groups:')
-}
-log(`④ 注入完成`)
-
-// ── 5. 文件脚本用 $content 赋值返回 ─────────────────────────────────────
-$content = result
-log('🔚 结束')
-
-function log(v) {
-  console.log(`[🐱 Clash 模板脚本] ${v}`)
+    // 4. 返回数据：Sub-Store 会将 validProxies 填入 proxies: []，将 groups 合并到 proxy-groups
+    return {
+        proxies: validProxies,
+        groups: groups
+    };
 }
