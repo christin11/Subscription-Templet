@@ -1,73 +1,70 @@
-/**
- * Sub Store 文件脚本 - Clash 模板注入
- * ─────────────────────────────────────
- * 正确用法：文件脚本用 $content = 赋值，不用 $done()
- *
- * 参数编辑中添加：
- *   key:   name
- *   value: 你在 Sub Store 里的订阅或组合订阅名称
- *
- *   key:   type
- *   value: collection（组合订阅）或 subscription（单条订阅）
- */
+// Clash 模板注入脚本
+// 参考 xream/scripts sing-box/template.js 写法
+//
+// 用法示例（脚本链接后拼参数）：
+// https://raw.githubusercontent.com/christin11/.../clash_substore.js#name=机场&type=collection
+//
+// 参数说明：
+//   name  订阅或组合订阅的名称
+//   type  collection（组合订阅）或 subscription（单条订阅），默认 collection
 
-async function main() {
-  // ── 1. 解析参数 ─────────────────────────────────────────────────────────
-  const args = parseArgument($argument);
-  const name = args['name'];
-  const type = args['type'] || 'collection';
+log('🚀 开始')
 
-  if (!name) throw new Error('缺少参数 name');
+let { type, name } = $arguments
 
-  // ── 2. 通过 produceArtifact 拉取节点（Sub Store 内置函数）───────────────
-  // 这里拉 Clash 格式的节点列表（proxies 段）
-  const proxies = await produceArtifact({
-    type,           // 'subscription' 或 'collection'
-    name,           // 订阅名称
-    platform: 'Clash',
-  });
+log(`传入参数 type: ${type}, name: ${name}`)
 
-  // proxies 是 YAML 格式的 proxies 列表字符串，例如：
-  // - name: 节点1
-  //   type: ss
-  //   ...
+type = /^1$|col|组合/i.test(type) ? 'collection' : 'subscription'
 
-  // ── 3. 构建 proxy-provider 块（用 inline 方式直接嵌入节点）────────────
-  // 用 content 类型的 provider，把节点直接内嵌，不需要外部 URL
-  const providerBlock = [
-    'proxy-providers:',
-    `  ${name}:`,
-    '    type: inline',
-    '    proxies:',
-    // 把每行节点缩进到 proxies: 下面
-    ...proxies.split('\n').filter(l => l.trim()).map(l => '      ' + l),
-  ].join('\n');
+// ── 1. 读取并解析模板（YAML 字符串）──────────────────────────────────────
+let template = $content
+if (!template) throw new Error('模板内容为空，请检查文件链接')
+log(`① 模板读取成功，长度 ${template.length}`)
 
-  // ── 4. 注入到模板 ────────────────────────────────────────────────────────
-  let template = $content;
-  const pattern = /^proxy-providers:[\s\S]*?(?=^\w)/m;
+// ── 2. 拉取订阅节点（Clash 格式，返回 proxies YAML 列表）─────────────────
+log(`② 读取${type === 'collection' ? '组合' : ''}订阅: ${name}`)
+const proxiesYaml = await produceArtifact({
+  name,
+  type,
+  platform: 'Clash',
+})
+log(`节点数据长度: ${proxiesYaml.length}`)
 
-  if (pattern.test(template)) {
-    template = template.replace(pattern, providerBlock + '\n');
-  } else {
-    template = template.replace('proxy-groups:', providerBlock + '\nproxy-groups:');
-  }
+// ── 3. 构建 proxy-provider 的 proxies 列表 ───────────────────────────────
+// produceArtifact Clash 格式返回的是完整 proxies 块，每行形如：
+// - name: 节点名
+//   type: ss
+//   ...
+// 需要缩进后嵌入 provider 的 proxies: 字段下
+const indentedProxies = proxiesYaml
+  .split('\n')
+  .filter(l => l.trim())
+  .map(l => '      ' + l)
+  .join('\n')
 
-  // ── 5. 文件脚本用 $content 赋值返回 ─────────────────────────────────────
-  $content = template;
+const providerBlock = [
+  'proxy-providers:',
+  `  ${name}:`,
+  '    type: inline',
+  '    proxies:',
+  indentedProxies,
+].join('\n')
+
+log(`③ 构建 proxy-providers 块完成`)
+
+// ── 4. 替换模板中的 proxy-providers 区块 ─────────────────────────────────
+const pattern = /^proxy-providers:[\s\S]*?(?=^\w)/m
+if (pattern.test(template)) {
+  template = template.replace(pattern, providerBlock + '\n')
+} else {
+  template = template.replace('proxy-groups:', providerBlock + '\nproxy-groups:')
 }
+log(`④ 注入完成`)
 
-function parseArgument(argument) {
-  const result = {};
-  if (!argument) return result;
-  argument.split('&').forEach(pair => {
-    const [key, ...rest] = pair.split('=');
-    if (key) result[decodeURIComponent(key)] = decodeURIComponent(rest.join('='));
-  });
-  return result;
+// ── 5. 返回（文件脚本用 $content 赋值）───────────────────────────────────
+$content = template
+log('🔚 结束')
+
+function log(v) {
+  console.log(`[🐱 Clash 模板脚本] ${v}`)
 }
-
-main().catch(err => {
-  console.error('[clash_substore] ' + err.message);
-  // 出错时不修改 $content，保持模板原样
-});
