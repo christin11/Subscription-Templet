@@ -1,21 +1,15 @@
 /**
- * @name Clash 转换脚本
- * @description 引用 Sub-Store 订阅并注入模板
- * @param {string} name - Sub-Store 订阅名
+ * @name Clash转换脚本
+ * @description 适配Sub-Store, 引用订阅并注入模板
  */
 
 async function operator(proxies) {
-    // 获取传递的订阅名参数
-    const subName = $arguments.name;
-    
-    // 基础容错
+    // 即使参数编辑打不开，Sub-Store 也会将当前文件的“订阅源”节点传给 proxies
     if (!proxies || proxies.length === 0) {
-        console.log("没有获取到节点数据");
+        console.log("提示：未获取到节点，请检查文件编辑页面的【订阅源】是否已勾选");
         return [];
     }
 
-    console.log(`成功读取订阅: ${subName}, 开始注入节点...`);
-
-    // 直接返回节点数组，Sub-Store 会自动处理后续的模板注入
+    console.log(`成功处理节点数量: ${proxies.length}`);
     return proxies;
 }
