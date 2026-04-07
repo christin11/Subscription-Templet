@@ -75,7 +75,7 @@ dns:
 
 subscribe-url: null
 
-#__PROXIES__
+  #__PROXIES__
 
 proxy-providers: {}
 
@@ -165,7 +165,7 @@ proxy-groups:
 
   - {name: 🌐 全球直连, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png', type: select, proxies: [DIRECT]}
 
-  # 节点地区分流（已改为自动填充占位符）
+    # 节点地区分流（已改为自动填充占位符）
 
   - name: 🇭🇰 香港节点
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png'
