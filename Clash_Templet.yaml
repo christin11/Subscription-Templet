@@ -476,7 +476,7 @@ http:
       flyint_fix:
         type: dns
         code: |
-          if ($request.hostname.endsWith(".bestvmr.com")) {
+          if ($domain.endsWith(".bestvmr.com")) {
             $done({ server: "quic://47.110.75.65:8053" });
           } else {
             $done({});
