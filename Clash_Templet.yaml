@@ -1,6 +1,10 @@
 mode: rule
 log-level: info
-
+proxies:
+  - name: PLACEHOLDER
+    type: http
+    server: 127.0.0.1
+    port: 1
 dns:
   enable: true
   ipv6: false
