@@ -83,8 +83,6 @@ proxies:
 
 # ========== 主策略组 ==========
 proxy-groups:
-
-proxy-groups:
   - name: ✨ 节点选择
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png'
