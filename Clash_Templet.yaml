@@ -167,7 +167,7 @@ proxy-groups:
 
   # 节点地区分流（已改为自动填充占位符）
 
-  - name: 🇭🇰 香港节点
+- name: 🇭🇰 香港节点
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png'
     type: url-test
     interval: 300
