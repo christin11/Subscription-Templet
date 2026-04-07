@@ -80,7 +80,8 @@ subscribe-url: null
 proxy-providers: {}
 
   # ========== 主策略组 ==========
-  proxy-groups:
+
+proxy-groups:
   # 分流分组
   - {name: ✨ 节点选择, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
 
