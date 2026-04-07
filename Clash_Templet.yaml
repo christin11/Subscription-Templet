@@ -1,5 +1,6 @@
 mode: rule
 log-level: info
+
 dns:
   enable: true
   ipv6: false
@@ -9,7 +10,7 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-  # 策略解析：优先级最高，强制 Flyint 域名走 8053 专线
+
   nameserver-policy:
     "*.bestvmr.com": "47.110.75.65:8053"
     "+.google.com": "https://dns.cloudflare.com/dns-query"
@@ -27,18 +28,19 @@ dns:
     "+.openai.com": "https://dns.cloudflare.com/dns-query"
     "+.chatgpt.com": "https://dns.cloudflare.com/dns-query"
     "+.anthropic.com": "https://dns.cloudflare.com/dns-query"
-  # 国内主流解析：使用加密 DoH 提高安全性
+
   nameserver:
     - https://doh.pub/dns-query
     - https://dns.alidns.com/dns-query
     - tls://dot.pub:853
     - tls://dns.alidns.com:853
-  # 海外保底解析
+
   fallback:
     - https://dns.cloudflare.com/dns-query
     - https://dns.google/dns-query
     - tls://1.1.1.1:853
     - tls://8.8.8.8:853
+
   fallback-filter:
     geoip: true
     geoip-code: CN
@@ -59,7 +61,7 @@ dns:
       - "+.githubusercontent.com"
       - "+.googlevideo.com"
       - "+.googleapis.cn"
-  # Fake-IP 白名单：确保本地服务和特殊系统检测不走代理
+
   fake-ip-filter:
     - "*.lan"
     - "*.local"
@@ -76,11 +78,14 @@ dns:
     - "*.*.xboxlive.com"
     - "+.msftncsi.com"
     - "+.msftconnecttest.com"
-# > 订阅信息展示
+
 subscribe-url: null
-# > 远程服务器
+
+# === 这里插入 proxies ===
 #__PROXIES__
+
 proxy-providers: {}
+
 proxy-groups:
   # 分流分组
   - {name: ✨ 节点选择, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png', type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
