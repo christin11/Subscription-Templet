@@ -1,10 +1,5 @@
 mode: rule
 log-level: info
-proxies:
-  - name: PLACEHOLDER
-    type: http
-    server: 127.0.0.1
-    port: 1
 dns:
   enable: true
   ipv6: false
@@ -80,7 +75,15 @@ dns:
 
 proxy-providers: {}
 
+proxies:
+  - name: PLACEHOLDER
+    type: http
+    server: 127.0.0.1
+    port: 1
+
 # ========== 主策略组 ==========
+proxy-groups:
+
 proxy-groups:
   - name: ✨ 节点选择
     type: select
