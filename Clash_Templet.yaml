@@ -91,7 +91,7 @@ proxy-groups:
   - name: ♻️ 自动选择
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     include-all: true
 
@@ -294,7 +294,7 @@ proxy-groups:
   - name: 🇭🇰 香港节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       # REGION_🇭🇰 香港节点
@@ -303,7 +303,7 @@ proxy-groups:
   - name: 🇹🇼 台湾节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       # REGION_🇹🇼 台湾节点
@@ -312,7 +312,7 @@ proxy-groups:
   - name: 🇯🇵 日本节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       # REGION_🇯🇵 日本节点
@@ -321,7 +321,7 @@ proxy-groups:
   - name: 🇰🇷 韩国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       # REGION_🇰🇷 韩国节点
@@ -330,7 +330,7 @@ proxy-groups:
   - name: 🇸🇬 新加坡节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       # REGION_🇸🇬 新加坡节点
@@ -339,7 +339,7 @@ proxy-groups:
   - name: 🇹🇭 泰国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       # REGION_🇹🇭 泰国节点
@@ -348,7 +348,7 @@ proxy-groups:
   - name: 🇺🇸 美国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       # REGION_🇺🇸 美国节点
@@ -357,7 +357,7 @@ proxy-groups:
   - name: 🇩🇪 德国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       # REGION_🇩🇪 德国节点
@@ -366,7 +366,7 @@ proxy-groups:
   - name: 🇬🇧 英国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png'
-    url: https://www.epochtimes.com/
+    url: http://www.gstatic.com/generate_204
     interval: 300
     proxies:
       # REGION_🇬🇧 英国节点
