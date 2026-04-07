@@ -285,70 +285,76 @@ proxy-groups:
 
   # 节点地区分流
   - name: 🇭🇰 香港节点
-    type: select
+    type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png'
+    interval: 300
     proxies:
-      - DIRECT
-    # REGION_🇭🇰 香港节点 - 在此添加代理节点
+      # REGION_🇭🇰 香港节点
+      - PLACEHOLDER
 
   - name: 🇹🇼 台湾节点
-    type: select
+    type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png'
+    interval: 300
     proxies:
-      - DIRECT
-    # REGION_🇹🇼 台湾节点 - 在此添加代理节点
+      # REGION_🇹🇼 台湾节点
+      - PLACEHOLDER
 
   - name: 🇯🇵 日本节点
-    type: select
+    type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
     proxies:
-      - DIRECT
-    # REGION_🇯🇵 日本节点 - 在此添加代理节点
+      # REGION_🇯🇵 日本节点
+      - PLACEHOLDER
 
   - name: 🇰🇷 韩国节点
-    type: select
+    type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png'
+    interval: 300
     proxies:
-      - DIRECT
-    # REGION_🇰🇷 韩国节点 - 在此添加代理节点
+      # REGION_🇰🇷 韩国节点
+      - PLACEHOLDER
 
   - name: 🇸🇬 新加坡节点
-    type: select
+    type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png'
+    interval: 300
     proxies:
-      - DIRECT
-    # REGION_🇸🇬 新加坡节点 - 在此添加代理节点
+      # REGION_🇸🇬 新加坡节点
+      - PLACEHOLDER
 
   - name: 🇹🇭 泰国节点
-    type: select
+    type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png'
+    interval: 300
     proxies:
-      - DIRECT
-    # REGION_🇹🇭 泰国节点 - 在此添加代理节点
+      # REGION_🇹🇭 泰国节点
+      - PLACEHOLDER
 
   - name: 🇺🇸 美国节点
-    type: select
+    type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png'
+    interval: 300
     proxies:
-      - DIRECT
-    # REGION_🇺🇸 美国节点 - 在此添加代理节点
+      # REGION_🇺🇸 美国节点
+      - PLACEHOLDER
 
   - name: 🇩🇪 德国节点
-    type: select
+    type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png'
+    interval: 300
     proxies:
-      - DIRECT
-    # REGION_🇩🇪 德国节点 - 在此添加代理节点
+      # REGION_🇩🇪 德国节点
+      - PLACEHOLDER
 
   - name: 🇬🇧 英国节点
-    type: select
+    type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png'
+    interval: 300
     proxies:
-      - DIRECT
-    # REGION_🇬🇧 英国节点 - 在此添加代理节点
+      # REGION_🇬🇧 英国节点
+      - PLACEHOLDER
 
 rule-providers:
   Speedtest: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Speedtest.list'}
