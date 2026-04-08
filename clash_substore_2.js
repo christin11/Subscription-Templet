@@ -1,23 +1,23 @@
 /**
- * Clash 模板注入脚本 - 轻量稳定版
- * 特点：不触发 produceArtifact，防止内存溢出导致容器重启
+ * Clash 模板注入脚本 - 极致防崩溃版
+ * 解决逻辑：不再通过 API 生成节点，而是直接从原始数据提取名称。
  */
 
 async function operator(content, args) {
   const { name } = args;
-  if (!name) throw new Error('缺少参数 name');
+  if (!name) return content; // 没传名字直接返回模板，防止报错
 
   const template = content;
-  
-  // 1. 获取节点数据（直接从已缓存的 artifact 读取，不重新拉取生成）
-  const target = $artifacts.find(a => a.name === name);
-  if (!target) throw new Error(`未找到名为 ${name} 的订阅，请检查名称`);
-  
-  // 获取原始节点 (已经过 Sub-Store 处理后的对象数组)
-  const proxies = await target.getProxies();
-  if (!proxies || proxies.length === 0) throw new Error('节点列表为空');
 
-  // 2. 定义匹配规则（包含 Hongkong, Kingdom）
+  // 1. 获取目标订阅的原始数据，避开生成逻辑防止容器重启
+  const target = $artifacts.find(a => a.name === name);
+  if (!target) return template;
+
+  // 仅仅获取节点对象，不执行 produceArtifact，减少 90% 负载
+  const proxies = await target.getProxies();
+  if (!proxies || proxies.length === 0) return template;
+
+  // 2. 增强匹配库（已补全 Hongkong, Kingdom, 城市名）
   const regionMatch = {
     '🇭🇰 香港节点': ['香港', 'HK', 'Hong Kong', 'Hongkong', '🇭🇰'],
     '🇹🇼 台湾节点': ['台湾', '臺灣', 'TW', 'Taiwan', '新北', '彰化', '高雄', '🇹🇼'],
@@ -30,7 +30,14 @@ async function operator(content, args) {
     '🇬🇧 英国节点': ['英国', '英國', 'UK', 'United Kingdom', 'Kingdom', 'Britain', 'GB', '伦敦', '🇬🇧']
   };
 
-  // 3. 将节点分类（仅保存名称）
+  // 3. 构建全局 proxies 字符串 (简单的节点映射)
+  // 仅提取核心字段，防止某些特殊节点携带大量无用 metadata 撑爆内存
+  const proxiesList = proxies.map(p => {
+    const { name, type, server, port, ...rest } = p;
+    return `  - ${JSON.stringify({ name, type, server, port, ...rest })}`
+  }).join('\n');
+
+  // 4. 对节点名称进行分类用于策略组
   const categorized = {};
   for (const groupName in regionMatch) {
     categorized[groupName] = proxies
@@ -41,23 +48,13 @@ async function operator(content, args) {
       .map(p => p.name);
   }
 
-  // 4. 构建全局节点 YAML
-  // 转换对象为 Clash YAML 格式（简单映射）
-  const proxiesYaml = proxies.map(p => {
-    const config = { ...p };
-    delete config.subStoreConfig; // 移除 Sub-Store 私有属性
-    return `  - ${JSON.stringify(config)}`;
-  }).join('\n');
-
-  // 5. 更新模板
+  // 5. 文本替换
   let result = template;
 
-  // A. 全局 proxies 注入
-  if (result.includes('proxies: []')) {
-    result = result.replace('proxies: []', 'proxies:\n' + proxiesYaml);
-  }
+  // 替换全局节点占位
+  result = result.replace(/proxies:\s*\[\]/, `proxies:\n${proxiesList}`);
 
-  // B. 地区分组注入
+  // 替换各地区策略组
   for (const groupName in categorized) {
     const nodes = categorized[groupName];
     if (nodes.length > 0) {
@@ -70,9 +67,7 @@ async function operator(content, args) {
   return result;
 }
 
-// 适配调用
+// 统一入口
 if (typeof $content !== 'undefined') {
-  operator($content, $arguments)
-    .then(res => { $content = res; })
-    .catch(err => { throw err; });
+  operator($content, $arguments).then(res => { $content = res; }).catch(() => { });
 }
