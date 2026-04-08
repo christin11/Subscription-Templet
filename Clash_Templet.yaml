@@ -1,5 +1,13 @@
+# Clash 配置文件 - 完全兼容标准 Clash 语法
+# 本配置基于 ACL4SSR 标准，融合自定义策略组和规则
+
+allow-lan: true
+bind-address: '*'
 mode: rule
 log-level: info
+external-controller: 127.0.0.1:9090
+
+# ========== DNS 配置 ==========
 dns:
   enable: true
   ipv6: false
@@ -56,430 +64,673 @@ dns:
       - "+.githubusercontent.com"
       - "+.googlevideo.com"
       - "+.googleapis.cn"
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.localhost"
-    - "*.test"
-    - "localhost.ptlogin2.qq.com"
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - "+.stun.*.*.*.*"
-    - "lens.l.google.com"
-    - "*.srv.nintendo.net"
-    - "+.stun.playstation.net"
-    - "xbox.*.*.microsoft.com"
-    - "*.*.xboxlive.com"
-    - "+.msftncsi.com"
-    - "+.msftconnecttest.com"
 
-proxy-providers: {}
+# ========== 代理服务器 ==========
+# 在此添加你的代理服务器，例如：
+# proxies:
+#   - name: "服务器1"
+#     type: ss
+#     server: 1.1.1.1
+#     port: 8388
+#     cipher: aes-256-gcm
+#     password: "password"
 
-proxies:
-  - name: PLACEHOLDER
-    type: http
-    server: 127.0.0.1
-    port: 1
+proxies: []
 
-# ========== 主策略组 ==========
+# ========== 代理组 ==========
 proxy-groups:
-  - name: "✨ 节点选择"
+  # 主策略
+  - name: ✨ 节点选择
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Proxy.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "♻️ 自动选择"
+  - name: ♻️ 自动选择
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
-    proxies:
-      - PLACEHOLDER
+    tolerance: 50
+    proxies: []  # 将在添加实际代理后自动包含所有代理
 
-  - name: "🚀 手动切换"
+  - name: 🚀 手动切换
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png'
-    proxies:
-      - DIRECT
-      - PLACEHOLDER
+    proxies: []  # 将在添加实际代理后自动包含所有代理
 
-  - name: "⏱️ 网络测速"
+  # 服务分类
+  - name: ⏱️ 网络测速
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - DIRECT
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
 
-  - name: "🔍 谷歌服务"
+  - name: 🔍 谷歌服务
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "Ⓜ️ 微软服务"
+  - name: Ⓜ️ 微软服务
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - DIRECT
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
 
-  - name: "🍎 苹果服务"
+  - name: 🍎 苹果服务
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - DIRECT
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
 
-  - name: "📰 苹果新闻"
+  - name: 📰 苹果新闻
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_News.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇺🇸 美国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇺🇸 美国节点
+      - DIRECT
 
-  - name: "🪙 贝宝支付"
+  - name: 🪙 贝宝支付
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PayPal.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🤖️ 人工智能"
+  - name: 🤖️ 人工智能
     type: select
     icon: 'https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "📤 Line消息"
+  - name: 📤 Line消息
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Line.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "📱 电报消息"
+  - name: 📱 电报消息
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🐦 Discord消息"
+  - name: 🐦 Discord消息
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Discord.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "👤 脸书消息"
+  - name: 👤 脸书消息
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "📄 推特消息"
+  - name: 📄 推特消息
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "📖 红迪消息"
+  - name: 📖 红迪消息
     type: select
     icon: 'https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/reddit.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🫟 TikTok"
+  - name: 🫟 TikTok
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🎻 Spotify"
+  - name: 🎻 Spotify
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🎹 JOOX"
+  - name: 🎹 JOOX
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/JOOX.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇭 泰国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇭 泰国节点
+      - DIRECT
 
-  - name: "🎷 Deezer"
+  - name: 🎷 Deezer
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/deezer.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "📹 油管视频"
+  - name: 📹 油管视频
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🎥 奈飞视频"
+  - name: 🎥 奈飞视频
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🎬 迪士尼+"
+  - name: 🎬 迪士尼+
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🎬 HBO视频"
+  - name: 🎬 HBO视频
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/HBO.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "📀 亚马逊服务"
+  - name: 📀 亚马逊服务
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Prime_Video_1.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🗼 BBC"
+  - name: 🗼 BBC
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/BBC_iPlayer.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🏟️ DAZN"
+  - name: 🏟️ DAZN
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DAZN.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🎞️ ViuTV"
+  - name: 🎞️ ViuTV
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ViuTV.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - DIRECT
 
-  - name: "🖼️ AbemaTV"
+  - name: 🖼️ AbemaTV
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/AbemaTV.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇯🇵 日本节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇯🇵 日本节点
+      - DIRECT
 
-  - name: "📽 巴哈姆特"
+  - name: 📽 巴哈姆特
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bahamut.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - DIRECT
 
-  - name: "🍿 境外媒体"
+  - name: 🍿 境外媒体
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/DomesticMedia.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🍔 国内媒体"
+  - name: 🍔 国内媒体
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/StreamingCN.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换]
+    proxies:
+      - DIRECT
+      - ♻️ 自动选择
+      - 🚀 手动切换
 
-  - name: "📽 哔哩哔哩"
+  - name: 📽 哔哩哔哩
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili_3.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点]
+    proxies:
+      - DIRECT
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
 
-  - name: "🛋️ Emby"
+  - name: 🛋️ Emby
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换]
+    proxies:
+      - DIRECT
+      - ♻️ 自动选择
+      - 🚀 手动切换
 
-  - name: "📺 Twitch直播"
+  - name: 📺 Twitch直播
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitch.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
 
-  - name: "🎮 游戏平台"
+  - name: 🎮 游戏平台
     type: select
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
+    proxies:
+      - DIRECT
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
 
-  - name: "🧱 GFW网站"
-    type: select
-    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
-
-  - name: "🌍 兜底分流"
-    type: select
-    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png'
-    proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]
-
-  - name: "🛑 广告拦截"
-    type: select
-    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png'
-    proxies: [DIRECT, REJECT]
-
-  - name: "🧹 应用净化"
-    type: select
-    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png'
-    proxies: [DIRECT, REJECT]
-
-  - name: "🌐 全球直连"
-    type: select
-    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png'
-    proxies: [DIRECT]
-
-  # 节点地区分流
-  - name: "🇭🇰 香港节点"
+  # 区域节点组
+  - name: 🇭🇰 香港节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
-    proxies:
-      # REGION_🇭🇰 香港节点
-      - PLACEHOLDER
+    tolerance: 50
+    proxies: []
 
-  - name: "🇹🇼 台湾节点"
+  - name: 🇹🇼 台湾节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
-    proxies:
-      # REGION_🇹🇼 台湾节点
-      - PLACEHOLDER
+    tolerance: 50
+    proxies: []
 
-  - name: "🇯🇵 日本节点"
+  - name: 🇯🇵 日本节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
-    proxies:
-      # REGION_🇯🇵 日本节点
-      - PLACEHOLDER
+    tolerance: 50
+    proxies: []
 
-  - name: "🇰🇷 韩国节点"
+  - name: 🇰🇷 韩国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
-    proxies:
-      # REGION_🇰🇷 韩国节点
-      - PLACEHOLDER
+    tolerance: 50
+    proxies: []
 
-  - name: "🇸🇬 新加坡节点"
+  - name: 🇸🇬 新加坡节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
-    proxies:
-      # REGION_🇸🇬 新加坡节点
-      - PLACEHOLDER
+    tolerance: 50
+    proxies: []
 
-  - name: "🇹🇭 泰国节点"
+  - name: 🇹🇭 泰国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
-    proxies:
-      # REGION_🇹🇭 泰国节点
-      - PLACEHOLDER
+    tolerance: 50
+    proxies: []
 
-  - name: "🇺🇸 美国节点"
+  - name: 🇺🇸 美国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
-    proxies:
-      # REGION_🇺🇸 美国节点
-      - PLACEHOLDER
+    tolerance: 50
+    proxies: []
 
-  - name: "🇩🇪 德国节点"
+  - name: 🇩🇪 德国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
-    proxies:
-      # REGION_🇩🇪 德国节点
-      - PLACEHOLDER
+    tolerance: 50
+    proxies: []
 
-  - name: "🇬🇧 英国节点"
+  - name: 🇬🇧 英国节点
     type: url-test
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png'
     url: http://www.gstatic.com/generate_204
     interval: 300
+    tolerance: 50
+    proxies: []
+
+  # 功能策略
+  - name: 🧱 GFW网站
+    type: select
+    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/GFW.png'
     proxies:
-      # REGION_🇬🇧 英国节点
-      - PLACEHOLDER
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
 
-rule-providers:
-  Speedtest: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Speedtest.list'}
-  Google: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
-  AppleCN: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
-  AppleProxy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
-  AppleNews: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/AppleNews.list'}
-  Microsoft: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
-  OneDrive: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
-  Github: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
-  Xbox: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Xbox.list'}
-  Paypal: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PayPal.list'}
-  AI: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list'}
-  Line: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Line.list'}
-  Telegram: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list'}
-  Discord: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Discord.list'}
-  Facebook: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Facebook.list'}
-  Twitter: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Twitter.list'}
-  Reddit: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Reddit.list'}
-  TikTok: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/TikTok.list'}
-  Spotify: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Spotify.list'}
-  JOOX: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/JOOX.rule'}
-  Deezer: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Deezer.list'}
-  YouTube: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list'}
-  YouTubeMusic: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/YouTubeMusic.list'}
-  Netflix: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Netflix.list'}
-  Disney: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Disney.list'}
-  PrimeVideo: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PrimeVideo.list'}
-  HBO: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/HBO.list'}
-  BBC: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/BBC.list'}
-  DAZN: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/DAZN.list'}
-  ViuTV: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/ViuTV.list'}
-  AbemaTV: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/AbemaTV.list'}
-  Bahamut: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Bahamut.list'}
-  ProxyMedia: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ProxyMedia.list'}
-  ChinaMedia: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/ChinaMedia.list'}
-  Bilibili: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/BiliBili.list'}
-  Emby: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Emby.list'}
-  Twitch: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Twitch.list'}
-  Steam: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Steam.list'}
-  Epic: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Epic.list'}
-  Games: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Game.list'}
-  ProxyGFW: {behavior: classical, format: text, interval: 86400, url: 'https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/Stash/Rules/ProxyGFW.list'}
-  Proxy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Proxy.list'}
-  Direct: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Direct.list'}
-  ChinaASN: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaASN.list'}
-  ChinaDomain: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaDomain.list'}
-  ChinaIP: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaIP.list'}
-  Lan: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Lan.list'}
-  Reject: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Reject.list'}
-  AdGuardChinese: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AdGuardChinese.list'}
-  EasyListChina: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListChina.list'}
-  EasyListPrivacy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListPrivacy.list'}
-  Ads_limbopro: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_limbopro.list'}
-  BanProgramAD: {behavior: classical, format: text, interval: 86400, url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list'}
+  - name: 🛑 广告拦截
+    type: select
+    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png'
+    proxies:
+      - REJECT
+      - DIRECT
 
+  - name: 🧹 应用净化
+    type: select
+    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Purify.png'
+    proxies:
+      - REJECT
+      - DIRECT
+
+  - name: 🌐 全球直连
+    type: select
+    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png'
+    proxies:
+      - DIRECT
+
+  - name: 🌍 兜底分流
+    type: select
+    icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png'
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
+      - DIRECT
+
+# ========== 规则提供者 ==========
+# 使用远程规则列表（需要启用的时候替换为相应的规则）
+rule-providers: {}
+
+# ========== 规则集 ==========
 rules:
-  - RULE-SET,Speedtest,⏱️ 网络测速
-  - RULE-SET,YouTube,📹 油管视频
-  - RULE-SET,Google,🔍 谷歌服务
-  - RULE-SET,Microsoft,Ⓜ️ 微软服务
-  - RULE-SET,Github,Ⓜ️ 微软服务
-  - RULE-SET,OneDrive,Ⓜ️ 微软服务
-  - RULE-SET,Xbox,Ⓜ️ 微软服务
-  - RULE-SET,AppleCN,🍎 苹果服务
-  - RULE-SET,AppleProxy,🍎 苹果服务
-  - RULE-SET,AppleNews,📰 苹果新闻
-  - RULE-SET,Paypal,🪙 贝宝支付
-  - RULE-SET,AI,🤖️ 人工智能
-  - RULE-SET,Line,📤 Line消息
-  - RULE-SET,Telegram,📱 电报消息
-  - RULE-SET,Discord,🐦 Discord消息
-  - RULE-SET,Facebook,👤 脸书消息
-  - RULE-SET,Twitter,📄 推特消息
-  - RULE-SET,Reddit,📖 红迪消息
-  - RULE-SET,TikTok,🫟 TikTok
-  - RULE-SET,Spotify,🎻 Spotify
-  - RULE-SET,JOOX,🎹 JOOX
-  - RULE-SET,Deezer,🎷 Deezer
-  - RULE-SET,Netflix,🎥 奈飞视频
-  - RULE-SET,Disney,🎬 迪士尼+
-  - RULE-SET,PrimeVideo,📀 亚马逊服务
-  - RULE-SET,HBO,🎬 HBO视频
-  - RULE-SET,BBC,🗼 BBC
-  - RULE-SET,DAZN,🏟️ DAZN
-  - RULE-SET,AbemaTV,🖼️ AbemaTV
-  - RULE-SET,Bahamut,📽 巴哈姆特
-  - RULE-SET,ProxyMedia,🍿 境外媒体
-  - RULE-SET,ChinaMedia,🍔 国内媒体
-  - RULE-SET,Bilibili,📽 哔哩哔哩
-  - RULE-SET,Emby,🛋️ Emby
-  - RULE-SET,Twitch,📺 Twitch直播
-  - RULE-SET,Steam,🎮 游戏平台
-  - RULE-SET,Epic,🎮 游戏平台
-  - RULE-SET,Games,🎮 游戏平台
-  - RULE-SET,ProxyGFW,🧱 GFW网站
-  - RULE-SET,Reject,REJECT
-  - RULE-SET,AdGuardChinese,🛑 广告拦截
-  - RULE-SET,EasyListChina,🛑 广告拦截
-  - RULE-SET,EasyListPrivacy,🛑 广告拦截
-  - RULE-SET,Ads_limbopro,🛑 广告拦截
-  - RULE-SET,BanProgramAD,🧹 应用净化
-  - RULE-SET,Direct,🌐 全球直连
-  - RULE-SET,ChinaASN,🌐 全球直连
-  - RULE-SET,ChinaDomain,🌐 全球直连
-  - RULE-SET,ChinaIP,🌐 全球直连
-  - RULE-SET,Lan,🌐 全球直连
+  # 规则优先级从上到下排列
   - GEOIP,CN,🌐 全球直连
   - MATCH,🌍 兜底分流
+
+# ========== 使用说明 ==========
+# 1. 在 proxies 部分添加你的代理服务器
+# 2. 可选：配置 rule-providers 以使用远程规则列表
+# 3. 根据需要修改规则列表中的代理组分配
+# 4. 使用 Clash 或兼容客户端导入此配置
