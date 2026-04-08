@@ -1,17 +1,15 @@
 /**
- * Clash 模板节点注入脚本 - 修复版
- * 适用场景：Sub-Store 快捷脚本 / 文件脚本
+ * Clash 模板节点注入脚本 - 最终兼容修复版
  */
 
-async function execute() {
-  let { type, name } = $arguments;
+async function operator(content, args) {
+  const { type, name } = args;
   if (!name) throw new Error('缺少参数 name，请在链接后加 #name=订阅名');
 
-  type = /^1$|col|组合/i.test(type) ? 'collection' : 'subscription';
-  const template = $content;
-  if (!template) throw new Error('模板内容为空');
+  const artifactType = /^1$|col|组合/i.test(type) ? 'collection' : 'subscription';
+  const template = content;
 
-  // 1. 定义匹配规则 (内置正则，覆盖 Hongkong, Kingdom, 城市名等)
+  // 1. 定义匹配逻辑（补全 Hongkong, Kingdom 及主流城市名）
   const regionMatch = {
     '🇭🇰 香港节点': ['香港', 'HK', 'Hong Kong', 'Hongkong', '🇭🇰'],
     '🇹🇼 台湾节点': ['台湾', '臺灣', 'TW', 'Taiwan', '新北', '彰化', '高雄', '🇹🇼'],
@@ -27,56 +25,52 @@ async function execute() {
   // 2. 拉取订阅节点
   const proxiesYaml = await produceArtifact({
     name,
-    type,
+    type: artifactType,
     platform: 'Clash',
   });
-  if (!proxiesYaml) throw new Error('节点拉取失败');
+  if (!proxiesYaml) throw new Error('节点拉取失败，请检查订阅名');
 
-  // 3. 解析所有节点名称
+  // 3. 解析节点名称用于分组
   const allProxyNames = [];
-  proxiesYaml.split('\n').forEach(line => {
+  const lines = proxiesYaml.split('\n');
+  for (const line of lines) {
     if (line.includes('name:')) {
-      const match = line.match(/name:\s*["']?([^"'\n]+)["']?/);
-      if (match) allProxyNames.push(match[1].trim());
+      const m = line.match(/name:\s*["']?([^"'\n]+)["']?/);
+      if (m) allProxyNames.push(m[1].trim());
     }
-  });
-
-  // 4. 按地区对节点进行分类
-  const categorized = {};
-  for (const groupName in regionMatch) {
-    categorized[groupName] = allProxyNames.filter(proxyName => {
-      const lowerName = proxyName.toLowerCase();
-      return regionMatch[groupName].some(keyword => 
-        lowerName.includes(keyword.toLowerCase())
-      );
-    });
   }
 
-  // 5. 注入模板
+  // 4. 开始更新模板
   let result = template;
 
-  // A. 注入全局节点列表 (寻找 proxies: [] 并替换)
-  result = result.replace(/proxies:\s*\[\]/, `proxies:\n${proxiesYaml}`);
+  // A. 替换全局 proxies: []
+  if (result.includes('proxies: []')) {
+    result = result.replace('proxies: []', 'proxies:\n' + proxiesYaml);
+  }
 
-  // B. 注入各个地区策略组
-  for (const groupName in categorized) {
-    const nodes = categorized[groupName];
-    if (nodes.length > 0) {
-      // 构建 YAML 格式列表
-      const nodeYaml = 'proxies:\n' + nodes.map(n => `      - "${n}"`).join('\n');
+  // B. 遍历地区并注入
+  for (const groupName in regionMatch) {
+    const matchedNodes = allProxyNames.filter(proxyName => {
+      const lowerProxy = proxyName.toLowerCase();
+      return regionMatch[groupName].some(k => lowerProxy.includes(k.toLowerCase()));
+    });
+
+    if (matchedNodes.length > 0) {
+      // 构建 YAML 节点列表字符串
+      const nodeYaml = 'proxies:\n' + matchedNodes.map(n => `      - "${n}"`).join('\n');
       
-      // 使用正则匹配对应的策略组名，并替换其下的空 proxies: []
+      // 精准定位到分组下的 proxies: [] 并替换
       const groupRegex = new RegExp(`(name:\\s*"?${groupName}"?[\\s\\S]*?proxies:\\s*)\\[\\]`, 'g');
       result = result.replace(groupRegex, `$1${nodeYaml}`);
     }
   }
 
-  $content = result;
+  return result;
 }
 
-// 执行脚本
-execute().catch(err => {
-  // 备用错误显示，如果环境支持 console
-  if (typeof console !== 'undefined') console.log(err);
-  throw err;
-});
+// 脚本执行入口，确保兼容 Sub-Store 不同位置的调用
+if (typeof $content !== 'undefined') {
+  operator($content, $arguments)
+    .then(res => { $content = res; })
+    .catch(err => { throw err; });
+}
