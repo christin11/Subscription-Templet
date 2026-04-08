@@ -592,78 +592,78 @@ proxy-groups:
       - 🇩🇪 德国节点
       - 🇬🇧 英国节点
 
-  # 区域节点组
+  # 地区分流 - 增强正则匹配版本（按原模板顺序排列）
   - name: 🇭🇰 香港节点
     type: url-test
+    # 匹配：香港、HK、Hong Kong、Hongkong、国旗
+    filter: "(?i)香港|HK|Hong Kong|Hongkong|🇭🇰"
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
 
   - name: 🇹🇼 台湾节点
     type: url-test
+    # 匹配：台湾、臺灣、TW、Taiwan、新北、彰化、高雄、国旗
+    filter: "(?i)台湾|臺灣|TW|Taiwan|新北|彰化|高雄|🇹🇼"
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
 
   - name: 🇯🇵 日本节点
     type: url-test
+    # 匹配：日本、JP、Japan、东京、大阪、名古屋、埼玉、福冈、国旗
+    filter: "(?i)日本|JP|Japan|东京|大阪|名古屋|埼玉|福冈|🇯🇵"
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
 
   - name: 🇰🇷 韩国节点
     type: url-test
+    # 匹配：韩国、韓國、KR|Korea、首尔、春川、国旗
+    filter: "(?i)韩国|韓國|KR|Korea|首尔|春川|🇰🇷"
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
 
   - name: 🇸🇬 新加坡节点
     type: url-test
+    # 匹配：新加坡、SG、Singapore、狮城、国旗
+    filter: "(?i)新加坡|SG|Singapore|狮城|🇸🇬"
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
 
   - name: 🇹🇭 泰国节点
     type: url-test
+    # 匹配：泰国、泰國、TH、Thailand|曼谷、国旗
+    filter: "(?i)泰国|泰國|TH|Thailand|曼谷|🇹🇭"
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
 
   - name: 🇺🇸 美国节点
     type: url-test
+    # 匹配：美国、美國、US、United States|America、圣何塞、洛杉矶、西雅图、芝加哥、纽约、国旗
+    filter: "(?i)美国|美國|US|United States|America|圣何塞|洛杉矶|西雅图|芝加哥|纽约|🇺🇸"
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
 
   - name: 🇩🇪 德国节点
     type: url-test
+    # 匹配：德国、德國、DE、Germany、法兰克福、柏林、杜塞尔多夫、国旗
+    filter: "(?i)德国|德國|DE|Germany|法兰克福|柏林|杜塞尔多夫|🇩🇪"
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
 
   - name: 🇬🇧 英国节点
     type: url-test
+    # 匹配：英国、英國、UK、United Kingdom、Kingdom、Britain、伦敦、国旗
+    filter: "(?i)英国|英國|UK|United Kingdom|Kingdom|Britain|GB|伦敦|🇬🇧"
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png'
-    url: http://www.gstatic.com/generate_204
     interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
 
   # 功能策略
   - name: 🧱 GFW网站
