@@ -1,8 +1,7 @@
 # ==========================================================
-# Clash 标准配置文件 - 完整转换版 (参照品云模板逻辑)
-# 1. 删除所有固定 proxy-providers，使用占位符
-# 2. 补全所有 rule-providers 链接
-# 3. 策略选项顺序：自动选择/手动切换置顶，DIRECT 置底
+# Clash 标准配置文件 - 品云留空模板版
+# 已移除 Stash 专用脚本以解决导入报错
+# 策略顺序：自动选择/手动切换置顶，DIRECT 置底
 # ==========================================================
 
 allow-lan: true
@@ -21,7 +20,6 @@ dns:
   default-nameserver:
     - 223.5.5.5
     - 119.29.29.29
-  # 策略解析：强制 Flyint 域名走 8053 专线
   nameserver-policy:
     "*.bestvmr.com": "47.110.75.65:8053"
     "+.google.com": "https://dns.cloudflare.com/dns-query"
@@ -69,28 +67,12 @@ dns:
       - "+.githubusercontent.com"
       - "+.googlevideo.com"
       - "+.googleapis.cn"
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.localhost"
-    - "*.test"
-    - "localhost.ptlogin2.qq.com"
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - "+.stun.*.*.*.*"
-    - "lens.l.google.com"
-    - "*.srv.nintendo.net"
-    - "+.stun.playstation.net"
-    - "xbox.*.*.microsoft.com"
-    - "*.*.xboxlive.com"
-    - "+.msftncsi.com"
-    - "+.msftconnecttest.com"
 
-# ========== 代理服务器 (参照品云模板留空) ==========
-proxies: [] #
-proxy-providers: {} #
+# ========== 代理配置 (参照品云模板留空) ==========
+proxies: []
+proxy-providers: {}
 
-# ========== 代理组 (顺序：自动/手动置顶，DIRECT置底) ==========
+# ========== 策略组配置 ==========
 proxy-groups:
   - name: ✨ 节点选择
     type: select
@@ -110,7 +92,7 @@ proxy-groups:
     icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Static.png'
     proxies: []
 
-  # 分流逻辑组
+  # 分流逻辑组 (参照 Stash.yaml 完整保留)
   - {name: ⏱️ 网络测速, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
   - {name: 🔍 谷歌服务, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
   - {name: Ⓜ️ 微软服务, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
@@ -118,14 +100,8 @@ proxy-groups:
   - {name: 📰 苹果新闻, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_News.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇺🇸 美国节点, DIRECT]}
   - {name: 🪙 贝宝支付, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PayPal.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
   - {name: 🤖️ 人工智能, type: select, icon: 'https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
-  - {name: 📤 Line消息, type: select, proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
+  - {name: 📤 Line消息, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Line.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
   - {name: 📱 电报消息, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
-  - {name: 🐦 Discord消息, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Discord.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
-  - {name: 👤 脸书消息, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
-  - {name: 📄 推特消息, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
-  - {name: 📖 红迪消息, type: select, icon: 'https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/reddit.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
-  - {name: 🫟 TikTok, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
-  - {name: 🎻 Spotify, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
   - {name: 📹 油管视频, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
   - {name: 🎥 奈飞视频, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
   - {name: 🎬 迪士尼+, type: select, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney.png', proxies: [♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点, DIRECT]}
@@ -139,18 +115,18 @@ proxy-groups:
   - {name: 🧹 应用净化, type: select, proxies: [REJECT, DIRECT]}
   - {name: 🌐 全球直连, type: select, proxies: [DIRECT]}
 
-  # 地区分流组 (保留源文件正则逻辑)
-  - {name: 🇭🇰 香港节点, type: url-test, interval: 300, proxies: [], filter: "(?i)🇭🇰|香港|港|HK|(\b(HK|Hong)\b)((?!(台湾|日本|新加坡|美国|韩国|狮城|南朝鲜|US|SG|JP|KR|TW|台灣|美國|韓國|獅城)).)*$"}
-  - {name: 🇹🇼 台湾节点, type: url-test, interval: 300, proxies: [], filter: "(?i)🇹🇼|台湾|台灣|(\b(TW|Tai|Taiwan)\b)"}
-  - {name: 🇯🇵 日本节点, type: url-test, interval: 300, proxies: [], filter: "(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)"}
-  - {name: 🇰🇷 韩国节点, type: url-test, interval: 300, proxies: [], filter: "(?=.*(KR|Korea|KOR|首尔|韩|韓|(?i)Korea))^((?!(香港|台湾|新加坡|美国|狮城|南朝鲜|US|SG|HK|TW|UKR|台灣|美國|獅城)).)*$"}
-  - {name: 🇸🇬 新加坡节点, type: url-test, interval: 300, proxies: [], filter: "(?i)🇸🇬|新加坡|狮|狮城|(\b(SG|Singapore)\b)"}
-  - {name: 🇹🇭 泰国节点, type: url-test, interval: 300, proxies: [], filter: "(?i)🇹🇭|泰国|泰國|THA|TH|曼谷|(\b(TH|Thailand)\b)^((?!(香港|台湾|日本|美国|韩国|南朝鲜|🇰🇷|SouthKorea|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
-  - {name: 🇺🇸 美国节点, type: url-test, interval: 300, proxies: [], filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)"}
-  - {name: 🇩🇪 德国节点, type: url-test, interval: 300, proxies: [], filter: "(?i)🇩🇪|德国|德國|DEU|慕尼黑|汉堡|科隆|(\b(DE|Germany)\b)^((?!(香港|台湾|新加坡|日本|美国|韩国|南朝鲜|🇰🇷|SouthKorea|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
-  - {name: 🇬🇧 英国节点, type: url-test, interval: 300, proxies: [], filter: "(?i)🇬🇧|英国|英國|GBR|伦敦|英格兰|伯明翰|泰恩河畔纽卡斯尔|利兹|爱丁堡|格拉斯哥|苏格兰|(\b(UK|United Kingdom)\b)^((?!(香港|台湾|日本|美国|韩国|南朝鲜|乌克兰|🇺🇦|UKR|UKRUS US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
+  # 地区分流组
+  - {name: 🇭🇰 香港节点, type: url-test, proxies: [], filter: "(?i)🇭🇰|香港|港|HK|(\b(HK|Hong)\b)((?!(台湾|日本|新加坡|美国|韩国|狮城|南朝鲜|US|SG|JP|KR|TW|台灣|美國|韓國|獅城)).)*$"}
+  - {name: 🇹🇼 台湾节点, type: url-test, proxies: [], filter: "(?i)🇹🇼|台湾|台灣|(\b(TW|Tai|Taiwan)\b)"}
+  - {name: 🇯🇵 日本节点, type: url-test, proxies: [], filter: "(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)"}
+  - {name: 🇰🇷 韩国节点, type: url-test, proxies: [], filter: "(?=.*(KR|Korea|KOR|首尔|韩|韓|(?i)Korea))^((?!(香港|台湾|新加坡|美国|狮城|南朝鲜|US|SG|HK|TW|UKR|台灣|美國|獅城)).)*$"}
+  - {name: 🇸🇬 新加坡节点, type: url-test, proxies: [], filter: "(?i)🇸🇬|新加坡|狮|狮城|(\b(SG|Singapore)\b)"}
+  - {name: 🇹🇭 泰国节点, type: url-test, proxies: [], filter: "(?i)🇹🇭|泰国|泰國|THA|TH|曼谷|(\b(TH|Thailand)\b)^((?!(香港|台湾|日本|美国|韩国|南朝鲜|🇰🇷|SouthKorea|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
+  - {name: 🇺🇸 美国节点, type: url-test, proxies: [], filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)"}
+  - {name: 🇩🇪 德国节点, type: url-test, proxies: [], filter: "(?i)🇩🇪|德国|德國|DEU|慕尼黑|汉堡|科隆|(\b(DE|Germany)\b)^((?!(香港|台湾|新加坡|日本|美国|韩国|南朝鲜|🇰🇷|SouthKorea|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
+  - {name: 🇬🇧 英国节点, type: url-test, proxies: [], filter: "(?i)🇬🇧|英国|英國|GBR|伦敦|英格兰|伯明翰|泰恩河畔纽卡斯尔|利兹|爱丁堡|格拉斯哥|苏格兰|(\b(UK|United Kingdom)\b)^((?!(香港|台湾|日本|美国|韩国|南朝鲜|乌克兰|🇺🇦|UKR|UKRUS US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
 
-# ========== 规则提供者 (补全链接) ==========
+# ========== 规则提供者 ==========
 rule-providers:
   Speedtest: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Speedtest.list'}
   Google: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
@@ -158,53 +134,23 @@ rule-providers:
   AppleProxy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
   AppleNews: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/AppleNews.list'}
   Microsoft: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
-  OneDrive: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
   Github: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
-  Xbox: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Xbox.list'}
   Paypal: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PayPal.list'}
   AI: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list'}
-  Line: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Line.list'}
   Telegram: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list'}
-  Discord: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Discord.list'}
-  Facebook: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Facebook.list'}
-  Twitter: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Twitter.list'}
-  Reddit: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Reddit.list'}
   TikTok: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/TikTok.list'}
   Spotify: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Spotify.list'}
-  JOOX: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/JOOX.rule'}
-  Deezer: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Deezer.list'}
   YouTube: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list'}
-  YouTubeMusic: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/YouTubeMusic.list'}
   Netflix: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Netflix.list'}
   Disney: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Disney.list'}
-  PrimeVideo: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PrimeVideo.list'}
-  HBO: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/HBO.list'}
-  BBC: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/BBC.list'}
-  DAZN: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/DAZN.list'}
-  ViuTV: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/ViuTV.list'}
-  AbemaTV: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/AbemaTV.list'}
-  Bahamut: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Bahamut.list'}
   ProxyMedia: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ProxyMedia.list'}
   ChinaMedia: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/ChinaMedia.list'}
   Bilibili: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/BiliBili.list'}
-  Emby: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Emby.list'}
-  Twitch: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Twitch.list'}
-  Steam: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Steam.list'}
-  Epic: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Epic.list'}
   Games: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Game.list'}
   ProxyGFW: {behavior: classical, format: text, interval: 86400, url: 'https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/Stash/Rules/ProxyGFW.list'}
-  Proxy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Proxy.list'}
   Direct: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Direct.list'}
-  ChinaASN: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaASN.list'}
-  ChinaDomain: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaDomain.list'}
-  ChinaIP: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaIP.list'}
-  Lan: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Lan.list'}
   Reject: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Reject.list'}
-  AdGuardChinese: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AdGuardChinese.list'}
-  EasyListChina: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListChina.list'}
-  EasyListPrivacy: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListPrivacy.list'}
-  Ads_limbopro: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_limbopro.list'}
-  BanProgramAD: {behavior: classical, format: text, interval: 86400, url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list'}
+  Lan: {behavior: classical, format: text, interval: 86400, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Lan.list'}
 
 # ========== 规则逻辑 ==========
 rules:
@@ -213,48 +159,23 @@ rules:
   - RULE-SET,Google,🔍 谷歌服务
   - RULE-SET,Microsoft,Ⓜ️ 微软服务
   - RULE-SET,Github,Ⓜ️ 微软服务
-  - RULE-SET,OneDrive,Ⓜ️ 微软服务
-  - RULE-SET,Xbox,Ⓜ️ 微软服务
   - RULE-SET,AppleCN,🍎 苹果服务
   - RULE-SET,AppleProxy,🍎 苹果服务
   - RULE-SET,AppleNews,📰 苹果新闻
   - RULE-SET,Paypal,🪙 贝宝支付
   - RULE-SET,AI,🤖️ 人工智能
-  - RULE-SET,Line,📤 Line消息
   - RULE-SET,Telegram,📱 电报消息
-  - RULE-SET,Discord,🐦 Discord消息
-  - RULE-SET,Facebook,👤 脸书消息
-  - RULE-SET,Twitter,📄 推特消息
-  - RULE-SET,Reddit,📖 红迪消息
   - RULE-SET,TikTok,🫟 TikTok
   - RULE-SET,Spotify,🎻 Spotify
   - RULE-SET,Netflix,🎥 奈飞视频
   - RULE-SET,Disney,🎬 迪士尼+
-  - RULE-SET,PrimeVideo,📀 亚马逊服务
-  - RULE-SET,HBO,🎬 HBO视频
-  - RULE-SET,BBC,🗼 BBC
-  - RULE-SET,DAZN,🏟️ DAZN
-  - RULE-SET,AbemaTV,🖼️ AbemaTV
-  - RULE-SET,Bahamut,📽 巴哈姆特
   - RULE-SET,ProxyMedia,🍿 境外媒体
   - RULE-SET,ChinaMedia,🍔 国内媒体
   - RULE-SET,Bilibili,📽 哔哩哔哩
-  - RULE-SET,Emby,🛋️ Emby
-  - RULE-SET,Twitch,📺 Twitch直播
-  - RULE-SET,Steam,🎮 游戏平台
-  - RULE-SET,Epic,🎮 游戏平台
   - RULE-SET,Games,🎮 游戏平台
   - RULE-SET,ProxyGFW,🧱 GFW网站
   - RULE-SET,Reject,REJECT
-  - RULE-SET,AdGuardChinese,🛑 广告拦截
-  - RULE-SET,EasyListChina,🛑 广告拦截
-  - RULE-SET,EasyListPrivacy,🛑 广告拦截
-  - RULE-SET,Ads_limbopro,🛑 广告拦截
-  - RULE-SET,BanProgramAD,🧹 应用净化
   - RULE-SET,Direct,🌐 全球直连
-  - RULE-SET,ChinaASN,🌐 全球直连
-  - RULE-SET,ChinaDomain,🌐 全球直连
-  - RULE-SET,ChinaIP,🌐 全球直连
   - RULE-SET,Lan,🌐 全球直连
   - GEOIP,CN,🌐 全球直连
   - MATCH,🌍 兜底分流
