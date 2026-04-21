@@ -1,4 +1,4 @@
-proxies: []
+proxies: {}
 
 mode: rule
 log-level: info
