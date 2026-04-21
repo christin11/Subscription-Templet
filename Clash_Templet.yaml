@@ -22,546 +22,716 @@ dns:
     - "+.stun.*.*"
     - "+.msftconnecttest.com"
 
-proxies: {{proxies}}
+proxies:
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45905
+  cipher: aes-128-gcm
+  password: 777bc05be0dd624959fb
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇭🇰 Hongkong 021
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45936
+  cipher: aes-128-gcm
+  password: a643f6f3733c9962851d
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇭🇰 Hongkong 008
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45578
+  cipher: chacha20-ietf-poly1305
+  password: 7243745919d6de49a5db
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇭🇰 Hongkong 077
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45902
+  cipher: aes-128-gcm
+  password: 0a74c9e4565e935cf1ac
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇭🇰 Hongkong 018
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45901
+  cipher: aes-128-gcm
+  password: 7338d988d71591d76b3f
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇭🇰 Hongkong 016
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45900
+  cipher: aes-128-gcm
+  password: 51f8c7454c93d0d83c29
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇭🇰 Hongkong 017
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45904
+  cipher: aes-128-gcm
+  password: 6113536135af69e572c6
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇭🇰 Hongkong 020
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45903
+  cipher: aes-128-gcm
+  password: b16cb18d8992f3b83b7d
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇭🇰 Hongkong 019
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45936
+  cipher: aes-128-gcm
+  password: fd82aaf23fbfdd80b137
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🏴‍☠️ to.FlyintPro.om
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45572
+  cipher: aes-128-gcm
+  password: 722a54414ae6ee706ac9
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇯🇵 Japan 07
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45913
+  cipher: aes-128-gcm
+  password: c8960ca4a0add435fc34
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇯🇵 Japan 029
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45939
+  cipher: aes-128-gcm
+  password: 97b53b570db0917935e0
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇯🇵 Japan 050
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45912
+  cipher: aes-128-gcm
+  password: 97998add7bf4fea885ef
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇯🇵 Japan 028
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45581
+  cipher: aes-128-gcm
+  password: 6014caa3a323920c7fd0
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇯🇵 Japan 083
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45911
+  cipher: aes-128-gcm
+  password: 69dc0306f1bfb1af49a5
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇯🇵 Japan 027
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45937
+  cipher: aes-128-gcm
+  password: 4092a0d31011e2046687
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇸🇬 Singapore 057
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45918
+  cipher: aes-128-gcm
+  password: 1d8e4861b251c8c4ce78
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇸🇬 Singapore 034
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45917
+  cipher: aes-128-gcm
+  password: f4cd0a554e9d0558c581
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇸🇬 Singapore 032
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45579
+  cipher: aes-128-gcm
+  password: 0722bd4137ff579e6917
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇸🇬 Singapore 078
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45913
+  cipher: aes-128-gcm
+  password: 6113536135af69e572c6
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🏴‍☠️ 有问题请随时联系我们
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45916
+  cipher: aes-128-gcm
+  password: cfc6f3f75f5ef7b2665c
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇹🇼 Taiwan 065
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45915
+  cipher: aes-128-gcm
+  password: b74518fb49bd645e6ce7
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇹🇼 Taiwan 031
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45914
+  cipher: aes-128-gcm
+  password: b270fd77db2ecb7acbc8
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇹🇼 Taiwan 030
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45573
+  cipher: aes-128-gcm
+  password: 3e26a8cfb09fda219b36
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇹🇼 TaiwanDynamicIP
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45921
+  cipher: aes-128-gcm
+  password: d7577ca6729babe0790f
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇰🇷 SouthKorea 037
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45580
+  cipher: chacha20-ietf-poly1305
+  password: e6db72e9415e60e35892
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇺🇸 USA 084
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45584
+  cipher: chacha20-ietf-poly1305
+  password: 4605c34b957ab8e1001b
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇺🇸 USA 086
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45922
+  cipher: aes-128-gcm
+  password: c1ee5895686790a383fb
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇺🇸 USA 038
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45923
+  cipher: aes-128-gcm
+  password: 2b7df6aadc759756b0cd
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇺🇸 USA 039
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45924
+  cipher: aes-128-gcm
+  password: 0a0fb8dbfb8cc2f25f02
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇺🇸 USA 040
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45938
+  cipher: aes-128-gcm
+  password: 3938bfae997974860251
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇺🇸 USA 069
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45908
+  cipher: aes-128-gcm
+  password: 97c3cf442df2d7099275
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇺🇸 USA 025
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45927
+  cipher: aes-128-gcm
+  password: 8141b20c775ce63fab96
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇫🇷 France 043
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45587
+  cipher: chacha20-ietf-poly1305
+  password: 6180d9dc7075e7fe509b
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇮🇹 Italy 091
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45588
+  cipher: chacha20-ietf-poly1305
+  password: 05ff48fd41178ed790ec
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇰🇿 Kazakhstan 092
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45589
+  cipher: chacha20-ietf-poly1305
+  password: e3d6f327d91656f89f07
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇧🇷 Brazil 093
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45590
+  cipher: chacha20-ietf-poly1305
+  password: b8dd96a81eac14b376c3
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇮🇩 Indonesia 094
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45928
+  cipher: aes-128-gcm
+  password: bd62dac6636078647014
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇩🇪 Germany 044
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45929
+  cipher: aes-128-gcm
+  password: c8a1d0a69902859d209f
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🏴‍☠️ Kingdom 045
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45570
+  cipher: aes-128-gcm
+  password: b252e75cc98799d5b2d1
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🏴‍☠️ Kingdom 081
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45910
+  cipher: aes-128-gcm
+  password: 3fb1d360ec0c4c7a5054
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇨🇦 Canada 070
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45926
+  cipher: aes-128-gcm
+  password: 7452c550383bf60ac9d3
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇹🇷 Turkey 042
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45907
+  cipher: aes-128-gcm
+  password: d3a40b9d9b91c1e412c5
+  name: 🇵🇰 Pakistan 024
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45934
+  cipher: aes-128-gcm
+  password: ec39dd066cc142fbb81c
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇦🇺 Australia 071
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45582
+  cipher: chacha20-ietf-poly1305
+  password: c9fa2bcffa379937679e
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇨🇭 Switzerland 087
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45577
+  cipher: chacha20-ietf-poly1305
+  password: ec1a4ba66999975262e2
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇲🇾 Malaysia 076
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45576
+  cipher: aes-128-gcm
+  password: fe51727afe2fca582ebf
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇲🇾 Malaysia 075 *1.5
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45574
+  cipher: aes-128-gcm
+  password: 22046a35aa74890b48f5
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇵🇭 Philippines 05
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45925
+  cipher: aes-128-gcm
+  password: 1a402babc02465f45bea
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇹🇭 Thailand 041
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45930
+  cipher: aes-128-gcm
+  password: 11575f448fb4021fc611
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇷🇺 Russia 046
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45931
+  cipher: aes-128-gcm
+  password: 3e79196cf9e970671245
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇻🇳 Vietnam 047
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol2.bestvmr.com
+  port: 45583
+  cipher: chacha20-ietf-poly1305
+  password: 4f308f8c43ae78a779f5
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇺🇦 Ukraine 085
+- type: ss
+  skip-cert-verify: false
+  udp: false
+  server: fly-ol3.bestvmr.com
+  port: 45932
+  cipher: aes-128-gcm
+  password: 1954df8a5f3876000ea6
+  plugin: obfs
+  plugin-opts:
+    mode: http
+    host: 819391bcd06ad8bd9513.microsoft.com
+  name: 🇮🇳 India 048
 
 proxy-groups:
   - name: ✨ 节点选择
     type: select
     proxies:
       - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
+      - 🚀 手动切换
+      - 🇭🇰 香港节点
+      - 🇹🇼 台湾节点
+      - 🇯🇵 日本节点
+      - 🇰🇷 韩国节点
+      - 🇸🇬 新加坡节点
+      - 🇹🇭 泰国节点
+      - 🇺🇸 美国节点
+      - 🇩🇪 德国节点
+      - 🇬🇧 英国节点
       - DIRECT
+
   - name: ♻️ 自动选择
     type: url-test
-    url: 'http://www.gstatic.com/generate_204'
+    url: http://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
-    proxies: []
-  - name: "\U0001F680 手动切换"
+    include-all: true
+
+  - name: 🚀 手动切换
     type: select
-    proxies: []
-  - name: ⏱️ 网络测速
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F50D 谷歌服务"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F34E 苹果服务"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F4F0 苹果新闻"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-  - name: "\U0001FA99 贝宝支付"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F916️ 人工智能"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F4E4 Line消息"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F4F1 电报消息"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F426 Discord消息"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F464 脸书消息"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F4C4 推特消息"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F4D6 红迪消息"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001FADF TikTok"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F3BB Spotify"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F3B9 JOOX"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-  - name: "\U0001F3B7 Deezer"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F4F9 油管视频"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F3A5 奈飞视频"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F3AC 迪士尼+"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F3AC HBO视频"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F4C0 亚马逊服务"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F5FC BBC"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F3DF️ DAZN"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F39E️ ViuTV"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-  - name: "\U0001F5BC️ AbemaTV"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-  - name: "\U0001F4FD 巴哈姆特"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-  - name: "\U0001F37F 境外媒体"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F354 国内媒体"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-  - name: "\U0001F4FD 哔哩哔哩"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-  - name: "\U0001F6CB️ Emby"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-  - name: "\U0001F4FA Twitch直播"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F3AE 游戏平台"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F9F1 GFW网站"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F30D 兜底分流"
-    type: select
-    proxies:
-      - DIRECT
-      - ♻️ 自动选择
-      - "\U0001F680 手动切换"
-      - "\U0001F1ED\U0001F1F0 香港节点"
-      - "\U0001F1F9\U0001F1FC 台湾节点"
-      - "\U0001F1EF\U0001F1F5 日本节点"
-      - "\U0001F1F0\U0001F1F7 韩国节点"
-      - "\U0001F1F8\U0001F1EC 新加坡节点"
-      - "\U0001F1F9\U0001F1ED 泰国节点"
-      - "\U0001F1FA\U0001F1F8 美国节点"
-      - "\U0001F1E9\U0001F1EA 德国节点"
-      - "\U0001F1EC\U0001F1E7 英国节点"
-  - name: "\U0001F6D1 广告拦截"
-    type: select
-    proxies:
-      - DIRECT
-      - REJECT
-  - name: "\U0001F9F9 应用净化"
-    type: select
-    proxies:
-      - DIRECT
-      - REJECT
-  - name: "\U0001F310 全球直连"
-    type: select
-    proxies:
-      - DIRECT
-  - name: "\U0001F1ED\U0001F1F0 香港节点"
-    type: url-test
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-    tolerance: 50
-    proxies: []
-  - name: "\U0001F1F9\U0001F1FC 台湾节点"
-    type: url-test
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-    tolerance: 50
-    proxies: []
-  - name: "\U0001F1EF\U0001F1F5 日本节点"
-    type: url-test
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-    tolerance: 50
-    proxies: []
-  - name: "\U0001F1F0\U0001F1F7 韩国节点"
-    type: url-test
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-    tolerance: 50
-    proxies: []
-  - name: "\U0001F1F8\U0001F1EC 新加坡节点"
-    type: url-test
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-    tolerance: 50
-    proxies: []
-  - name: "\U0001F1F9\U0001F1ED 泰国节点"
-    type: url-test
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-    tolerance: 50
-    proxies: []
-  - name: "\U0001F1FA\U0001F1F8 美国节点"
-    type: url-test
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-    tolerance: 50
-    proxies: []
-  - name: "\U0001F1E9\U0001F1EA 德国节点"
-    type: url-test
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-    tolerance: 50
-    proxies: []
-  - name: "\U0001F1EC\U0001F1E7 英国节点"
-    type: url-test
-    url: 'http://www.gstatic.com/generate_204'
-    interval: 300
-    tolerance: 50
-    proxies: []
+    include-all: true
+
+  - {name: ⏱️ 网络测速, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🔍 谷歌服务, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: Ⓜ️ 微软服务, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🍎 苹果服务, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 📰 苹果新闻, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇺🇸 美国节点]}
+  - {name: 🪙 贝宝支付, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🤖️ 人工智能, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 📤 Line消息, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 📱 电报消息, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🐦 Discord消息, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 👤 脸书消息, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 📄 推特消息, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 📖 红迪消息, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🫟 TikTok, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🎻 Spotify, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🎹 JOOX, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇭 泰国节点]}
+  - {name: 🎷 Deezer, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 📹 油管视频, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🎥 奈飞视频, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🎬 迪士尼+, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🎬 HBO视频, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 📀 亚马逊服务, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🗼 BBC, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇬🇧 英国节点]}
+  - {name: 🏟️ DAZN, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🎞️ ViuTV, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点]}
+  - {name: 🖼️ AbemaTV, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇯🇵 日本节点]}
+  - {name: 📽 巴哈姆特, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点]}
+  - {name: 🍿 境外媒体, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🍔 国内媒体, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换]}
+  - {name: 📽 哔哩哔哩, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点]}
+  - {name: 🛋️ Emby, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换]}
+  - {name: 📺 Twitch直播, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🎮 游戏平台, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🧱 GFW网站, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🌍 兜底分流, type: select, proxies: [DIRECT, ♻️ 自动选择, 🚀 手动切换, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇹🇭 泰国节点, 🇺🇸 美国节点, 🇩🇪 德国节点, 🇬🇧 英国节点]}
+  - {name: 🛑 广告拦截, type: select, proxies: [DIRECT, REJECT]}
+  - {name: 🧹 应用净化, type: select, proxies: [DIRECT, REJECT]}
+  - {name: 🌐 全球直连, type: select, proxies: [DIRECT]}
+
+  - {name: 🇭🇰 香港节点, type: url-test, interval: 300, include-all: true, filter: "(?i)🇭🇰|香港|港|HK|(\b(HK|Hong)\b)((?!(台湾|日本|新加坡|美国|韩国|狮城|南朝鲜|US|SG|JP|KR|TW|台灣|美國|韓國|獅城)).)*$"}
+  - {name: 🇹🇼 台湾节点, type: url-test, interval: 300, include-all: true, filter: "(?i)🇹🇼|台湾|台灣|(\b(TW|Tai|Taiwan)\b)"}
+  - {name: 🇯🇵 日本节点, type: url-test, interval: 300, include-all: true, filter: "(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)"}
+  - {name: 🇰🇷 韩国节点, type: url-test, interval: 300, include-all: true, filter: "(?=.*(KR|Korea|KOR|首尔|韩|韓|(?i)Korea))^((?!(香港|台湾|新加坡|美国|狮城|南朝鲜|US|SG|HK|TW|UKR|台灣|美國|獅城)).)*$"}
+  - {name: 🇸🇬 新加坡节点, type: url-test, interval: 300, include-all: true, filter: "(?i)🇸🇬|新加坡|狮|狮城|(\b(SG|Singapore)\b)"}
+  - {name: 🇹🇭 泰国节点, type: url-test, interval: 300, include-all: true, filter: "(?i)🇹🇭|泰国|泰國|THA|TH|曼谷|(\b(TH|Thailand)\b)^((?!(香港|台湾|日本|美国|韩国|南朝鲜|🇰🇷|SouthKorea|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
+  - {name: 🇺🇸 美国节点, type: url-test, interval: 300, include-all: true, filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)"}
+  - {name: 🇩🇪 德国节点, type: url-test, interval: 300, include-all: true, filter: "(?i)🇩🇪|德国|德國|DEU|慕尼黑|汉堡|科隆|(\b(DE|Germany)\b)^((?!(香港|台湾|新加坡|日本|美国|韩国|南朝鲜|🇰🇷|SouthKorea|US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
+  - {name: 🇬🇧 英国节点, type: url-test, interval: 300, include-all: true, filter: "(?i)🇬🇧|英国|英國|GBR|伦敦|英格兰|伯明翰|泰恩河畔纽卡斯尔|利兹|爱丁堡|格拉斯哥|苏格兰|(\b(UK|United Kingdom)\b)^((?!(香港|台湾|日本|美国|韩国|南朝鲜|乌克兰|🇺🇦|UKR|UKRUS US|JP|KR|HK|TW|台灣|美國|韓國)).)*$"}
 
 rule-providers:
   Speedtest: {behavior: classical, format: text, interval: 86400, url: 'https://whatshub.top/rule/Speedtest.list'}
