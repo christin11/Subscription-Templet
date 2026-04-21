@@ -176,6 +176,7 @@ proxy-groups:
   - {name: "🗼 BBC", type: select, proxies: ["🇬🇧 英国节点", "🚀 手动切换"]}
   - {name: "🏟️ DAZN", !!merge <<: *pr}
   - {name: "🎞️ ViuTV", type: select, proxies: ["🇭🇰 香港节点", "🚀 手动切换"]}
+  - {name: "🖼️ AbemaTV", type: select, proxies: ["🇯🇵 日本节点", "🚀 手动切换"]}
   - {name: "📽 巴哈姆特", type: select, proxies: ["🇭🇰 香港节点", "🇹🇼 台湾节点", "🚀 手动切换"]}
   - {name: "🍿 境外媒体", !!merge <<: *pr}
   - {name: "🍔 国内媒体", type: select, proxies: ["🟢 直连", "✨ 节点选择"]}
