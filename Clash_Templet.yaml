@@ -1,4 +1,3 @@
-proxies: {}
 
 mode: rule
 log-level: info
@@ -23,6 +22,8 @@ dns:
     - '*.local'
     - +.stun.*.*
     - +.msftconnecttest.com
+
+proxies: {{proxies}}
 
 proxy-groups:
   - name: ✨ 节点选择
