@@ -1,6 +1,6 @@
 
 proxy-providers:
-  "{{name}}":
+  Airport: 
     type: http
     interval: 1800
     health-check:
