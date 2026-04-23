@@ -229,42 +229,63 @@ rule-anchor:
   qcy: &qcy {type: http, interval: 259200, behavior: domain, format: text}
   class: &class {type: http, interval: 259200, behavior: classical, format: text}
 
-# 规则集定义
+# 规则集定义 (保持原始链接与条目，仅调整顺序)
 rule-providers:
-  # === 1. 拦截类规则 (建议在 rules 中置顶) ===
+  # === 拦截类规则 (移至最上方以确保优先级) ===
   BanProgramAD: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/BanProgramAD.list'}
   Reject: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Reject.list'}
   AdGuardChinese: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AdGuardChinese.list'}
   EasyListChina: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListChina.list'}
   EasyListPrivacy: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_EasyListPrivacy.list'}
   Ads_limbopro: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Ads_limbopro.list'}
-  # === 2. 基础与绕过 ===
-  Lan: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Lan.list'}
-  Direct: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Direct.list'}
-  # === 3. 高优先级应用规则 (AI、社交、电报) ===
+
+  # === 应用与流媒体规则 ===
   AI: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AI.list'}
   Telegram: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Telegram.list'}
-  Discord: {!!merge <<: *class, url: 'https://whatshub.top/rule/Discord.list'}
-  Twitter: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Twitter.list'}
-  # === 4. 视频与流媒体 ===
   YouTube: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/YouTube.list'}
   YouTubeMusic: {!!merge <<: *class, url: 'https://whatshub.top/rule/YouTubeMusic.list'}
   Netflix: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Netflix.list'}
   Disney: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Disney.list'}
-  Bilibili: {!!merge <<: *class, url: 'https://whatshub.top/rule/BiliBili.list'}
-  ProxyMedia: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ProxyMedia.list'}
-  # === 5. 其他应用与服务 ===
+  Spotify: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Spotify.list'}
+  TikTok: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/TikTok.list'}
+  Twitter: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Twitter.list'}
+  Facebook: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Facebook.list'}
+  Reddit: {!!merge <<: *class, url: 'https://whatshub.top/rule/Reddit.list'}
+  Discord: {!!merge <<: *class, url: 'https://whatshub.top/rule/Discord.list'}
+  Line: {!!merge <<: *class, url: 'https://whatshub.top/rule/Line.list'}
+  Speedtest: {!!merge <<: *class, url: 'https://whatshub.top/rule/Speedtest.list'}
   Google: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Google.list'}
   AppleCN: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleCN.list'}
   AppleProxy: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/AppleServers.list'}
   AppleNews: {!!merge <<: *class, url: 'https://whatshub.top/rule/AppleNews.list'}
   Microsoft: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Microsoft.list'}
+  OneDrive: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/OneDrive.list'}
   Github: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Github.list'}
+  Paypal: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PayPal.list'}
+  Xbox: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Xbox.list'}
   Steam: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Steam.list'}
-  Speedtest: {!!merge <<: *class, url: 'https://whatshub.top/rule/Speedtest.list'}
-  # === 6. 大范围区域规则 (通常放在 rules 最后) ===
+  Epic: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Epic.list'}
+  Games: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Game.list'}
+  JOOX: {!!merge <<: *class, url: 'https://whatshub.top/rule/JOOX.rule'}
+  Deezer: {!!merge <<: *class, url: 'https://whatshub.top/rule/Deezer.list'}
+  PrimeVideo: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/PrimeVideo.list'}
+  HBO: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/HBO.list'}
+  BBC: {!!merge <<: *class, url: 'https://whatshub.top/rule/BBC.list'}
+  DAZN: {!!merge <<: *class, url: 'https://whatshub.top/rule/DAZN.list'}
+  ViuTV: {!!merge <<: *class, url: 'https://whatshub.top/rule/ViuTV.list'}
+  AbemaTV: {!!merge <<: *class, url: 'https://whatshub.top/rule/AbemaTV.list'}
+  Bahamut: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Bahamut.list'}
+  ProxyMedia: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ProxyMedia.list'}
+  ChinaMedia: {!!merge <<: *class, url: 'https://whatshub.top/rule/ChinaMedia.list'}
+  Bilibili: {!!merge <<: *class, url: 'https://whatshub.top/rule/BiliBili.list'}
+  Emby: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Emby.list'}
+  Twitch: {!!merge <<: *class, url: 'https://whatshub.top/rule/Twitch.list'}
+
+  # === 基础分流与兜底规则 ===
+  Lan: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Lan.list'}
   ProxyGFW: {!!merge <<: *class, url: 'https://raw.githubusercontent.com/Repcz/Tool/refs/heads/X/Stash/Rules/ProxyGFW.list'}
   Proxy: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Proxy.list'}
+  Direct: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/Direct.list'}
   ChinaDomain: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaDomain.list'}
   ChinaIP: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaIP.list'}
   ChinaASN: {!!merge <<: *class, url: 'https://github.com/Repcz/Tool/raw/X/Stash/Rules/ChinaASN.list'}
