@@ -73,103 +73,56 @@ tun:
   auto-redirect: true
   auto-detect-interface: true
 
-# ============ 完整的 DNS 配置（修复版） ============
 dns:
   enable: true
   ipv6: false
   listen: 0.0.0.0:1053
-  
-  # 默认 DNS 服务器（快速基础 DNS）
-  default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
-  
-  # 加密 DNS（DoH/DoT，安全隐私）
-  nameserver:
-    - https://doh.pub/dns-query
-    - https://dns.alidns.com/dns-query
-    - tls://dot.pub:853
-    - tls://dns.alidns.com:853
-  
-  # 备用 DNS（污染检测）
-  fallback:
-    - https://dns.cloudflare.com/dns-query
-    - https://dns.google/dns-query
-    - tls://1.1.1.1:853
-    - tls://8.8.8.8:853
-  
-  # 污染检测配置
-  fallback-filter:
-    geoip: true
-    geoip-code: CN
-    ipcidr:
-      - 0.0.0.0/8
-      - 10.0.0.0/8
-      - 100.64.0.0/10
-      - 127.0.0.0/8
-      - 169.254.0.0/16
-      - 172.16.0.0/12
-      - 192.168.0.0/16
-      - 224.0.0.0/4
-      - 240.0.0.0/4
-    domain:
-      - "+.google.com"
-      - "+.facebook.com"
-      - "+.youtube.com"
-      - "+.githubusercontent.com"
-      - "+.googlevideo.com"
-      - "+.googleapis.cn"
-  
-  # Fake IP 模式
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   use-hosts: true
-  
-  # 域名分流（特定域名使用特定 DNS）
+
+  # 默认 DNS，用于解析加密 DNS 的域名
+  default-nameserver:
+    - 223.5.5.5
+    - 119.29.29.29
+
+  # 核心 Fake-IP 过滤：将机场域名强制排除，防止死锁
+  fake-ip-filter:
+    - '*.jytergdf.org'
+    - 'blog.jytergdf.org'
+    - 'doh.pub'
+    - 'dns.alidns.com'
+    - 'dns.google'
+    - '*.lan'
+    - '*.local'
+    - '+.stun.*.*'
+    - '+.stun.*.*.*'
+    - '+.msftncsi.com'
+    - '+.msftconnecttest.com'
+    - '+.push.apple.com'
+
+  # 主 DNS：采用机场推荐的 IP 格式 DoH
+  nameserver:
+    - 'https://119.29.29.29/dns-query'
+    - 'https://223.5.5.5/dns-query'
+    - '223.5.5.5'
+
+  # 修正后的策略分流：每个冒号后都严格检查了空格，并对 Key 加上了双引号
   nameserver-policy:
-    # 机场
-    "*.bestvmr.com": "47.110.75.65:8053"
-    "bestvmr.com": "47.110.75.65:8053"
-    # Google 服务
+    "geosite:cn": "119.29.29.29"
     "+.google.com": "https://dns.cloudflare.com/dns-query"
     "+.googleapis.com": "https://dns.cloudflare.com/dns-query"
-    "+.googleapis.cn": "https://dns.cloudflare.com/dns-query"
-    "+.googlevideo.com": "https://dns.cloudflare.com/dns-query"
-    "+.gstatic.com": "https://dns.cloudflare.com/dns-query"
     "+.youtube.com": "https://dns.cloudflare.com/dns-query"
-    "+.youtu.be": "https://dns.cloudflare.com/dns-query"
-    # 海外服务
     "+.facebook.com": "https://dns.cloudflare.com/dns-query"
     "+.twitter.com": "https://dns.cloudflare.com/dns-query"
-    "+.x.com": "https://dns.cloudflare.com/dns-query"
     "+.github.com": "https://dns.cloudflare.com/dns-query"
-    "+.githubusercontent.com": "https://dns.cloudflare.com/dns-query"
-    "+.openai.com": "https://dns.cloudflare.com/dns-query"
-    "+.chatgpt.com": "https://dns.cloudflare.com/dns-query"
-    "+.anthropic.com": "https://dns.cloudflare.com/dns-query"
-    # 国内
-    "geosite:cn": "119.29.29.29"
-  
-  # Fake IP 过滤
-  fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.localhost"
-    - "*.test"
-    - "localhost.ptlogin2.qq.com"
-    - "+.stun.*.*"
-    - "+.stun.*.*.*"
-    - "+.stun.*.*.*.*"
-    - "lens.l.google.com"
-    - "*.srv.nintendo.net"
-    - "+.stun.playstation.net"
-    - "xbox.*.*.microsoft.com"
-    - "*.*.xboxlive.com"
-    - "+.msftncsi.com"
-    - "+.msftconnecttest.com"
-    - "*.bestvmr.com"
-    - "bestvmr.com"
-    - "+.push.apple.com"
+
+  # 备用/污染判定
+  fallback-filter:
+    geoip: true
+    geoip-code: "CN"
+    ipcidr:
+      - 240.0.0.0/4
 
 proxies:
   - name: "🟢 直连"
