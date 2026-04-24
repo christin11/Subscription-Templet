@@ -203,6 +203,7 @@ proxy-groups:
     url: "https://www.gstatic.com/generate_204"
     icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
 
+  # ============ 业务分流组 ============
   - {name: "⏱️ 网络测速", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png}
   - {name: "🔍 谷歌服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png}
   - {name: "Ⓜ️ 微软服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png}
@@ -238,11 +239,13 @@ proxy-groups:
   - {name: "🎮 游戏平台", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png}
   - {name: "🧱 GFW网站", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Lock.png}
   - {name: "🌍 兜底分流", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
-  # ============ 广告拦截规则优先级调整（放在最前面） ============
+  
+  # ============ 拦截与直连组 ============
   - {name: "🛑 广告拦截", type: select, proxies: [REJECT, "🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png}
   - {name: "🧹 应用净化", type: select, proxies: [REJECT, "🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png}
   - {name: "🌐 全球直连", type: select, proxies: ["🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png}
 
+  # ============ 地区节点分组 ============
   - {name: "🇭🇰 香港节点", type: select, include-all: true, filter: '(?i)🇭🇰|香港|港|\bHK\b|Hong', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png}
   - {name: "🇹🇼 台湾节点", type: select, include-all: true, filter: '(?i)🇹🇼|台湾|台灣|台|\bTW\b|Taiwan', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png}
   - {name: "🇯🇵 日本节点", type: select, include-all: true, filter: '(?i)🇯🇵|日本|东京|東京|\bJP\b|Japan', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png}
@@ -252,7 +255,6 @@ proxy-groups:
   - {name: "🇺🇸 美国节点", type: select, include-all: true, filter: '(?i)🇺🇸|美国|洛杉矶|圣何塞|US|(?:States|America)', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png}
   - {name: "🇩🇪 德国节点", type: select, include-all: true, filter: '(?i)🇩🇪|德国|德國|DEU|慕尼黑|汉堡|科隆|(?:Germany)', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png}
   - {name: "🇬🇧 英国节点", type: select, include-all: true, filter: "(?i)🇬🇧|英国|英國|GBR|\\b(UK|United Kingdom|Kingdom|KINDOM)\\b|^((?!(烏克蘭|乌克兰|🇺🇦|UKR)).)*$", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png}
-
 # ============ 规则（修复版 - 广告拦截优先级最高） ============
 rules:
   # === 最高优先级：广告拦截规则 ===
