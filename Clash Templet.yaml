@@ -7,7 +7,7 @@
       url: https://www.epochtimes.com/
       interval: 300
     proxy: "🟢 直连"
-    url: 
+    url: "{{url}}"
 
 global-ua: clash
 
