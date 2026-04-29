@@ -198,19 +198,17 @@ proxy-groups:
   - {name: "🧹 应用净化", type: select, proxies: [REJECT, "🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png}
   - {name: "🌐 全球直连", type: select, proxies: ["🟢 直连"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Direct.png}
 
-  # ============ 地区节点分组 (url-test 自动择优) ============
-  - {name: "🇭🇰 香港节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇭🇰|香港|港|\bHK\b|Hong', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png}
-  - {name: "🇹🇼 台湾节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇹🇼|台湾|台灣|台|\bTW\b|Taiwan', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png}
-  - {name: "🇯🇵 日本节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇯🇵|日本|东京|東京|\bJP\b|Japan', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png}
-  - {name: "🇰🇷 韩国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇰🇷|韩|韓|首尔|\bKR\b|Korea', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png}
-  - {name: "🇸🇬 新加坡节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇸🇬|新加坡|狮|狮城|🇸🇬|\bSG\b|Singapore', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png}
-  - {name: "🇹🇭 泰国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇹🇭|泰国|泰國|曼谷|\bTH\b|Thailand', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png}
-  - {name: "🇺🇸 美国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇺🇸|美国|洛杉矶|圣何塞|\bUS\b|States|America', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png}
-  - {name: "🇩🇪 德国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇩🇪|德国|德國|\bDE\b|Germany', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png}
-  - {name: "🇬🇧 英国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇬🇧|英国|英國|GBR|\bUK\b|Kingdom', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png}
+ # ============ 地区节点分组 (url-test 自动择优) ============
+  - {name: "🇭🇰 香港节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, proxies: ["🟢 直连"], filter: '(?i)🇭🇰|香港|港|\bHK\b|Hong', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png}
+  - {name: "🇹🇼 台湾节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, proxies: ["🟢 直连"], filter: '(?i)🇹🇼|台湾|台灣|台|\bTW\b|Taiwan', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png}
+  - {name: "🇯🇵 日本节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, proxies: ["🟢 直连"], filter: '(?i)🇯🇵|日本|东京|東京|\bJP\b|Japan', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png}
+  - {name: "🇰🇷 韩国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, proxies: ["🟢 直连"], filter: '(?i)🇰🇷|韩|韓|首尔|\bKR\b|Korea', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png}
+  - {name: "🇸🇬 新加坡节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, proxies: ["🟢 直连"], filter: '(?i)🇸🇬|新加坡|狮|狮城|🇸🇬|\bSG\b|Singapore', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png}
+  - {name: "🇹🇭 泰国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, proxies: ["🟢 直连"], filter: '(?i)🇹🇭|泰国|泰國|曼谷|\bTH\b|Thailand', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png}
+  - {name: "🇺🇸 美国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, proxies: ["🟢 直连"], filter: '(?i)🇺🇸|美国|洛杉矶|圣何塞|\bUS\b|States|America', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png}
+  - {name: "🇩🇪 德国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, proxies: ["🟢 直连"], filter: '(?i)🇩🇪|德国|德國|\bDE\b|Germany', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png}
+  - {name: "🇬🇧 英国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, proxies: ["🟢 直连"], filter: '(?i)🇬🇧|英国|英國|GBR|\bUK\b(?!R)|Kingdom', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png}
 
-# ============ 规则（修复版 - 广告拦截优先级最高） ============
-rules:
   # === 最高优先级：广告拦截规则 ===
   - RULE-SET,BanProgramAD,🧹 应用净化
   - RULE-SET,Reject,🛑 广告拦截
