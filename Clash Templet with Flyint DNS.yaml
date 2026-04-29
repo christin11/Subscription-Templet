@@ -229,10 +229,7 @@ proxy-groups:
   - {name: "🇹🇭 泰国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇹🇭|泰国|泰國|曼谷|\bTH\b|Thailand', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Thailand.png}
   - {name: "🇺🇸 美国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇺🇸|美国|洛杉矶|圣何塞|\bUS\b|States|America', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png}
   - {name: "🇩🇪 德国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇩🇪|德国|德國|\bDE\b|Germany', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png}
-  - {name: "🇬🇧 英国节点", type: url-test, url: "http://www.gstatic.com/generate_204", interval: 300, include-all: true, filter: '(?i)🇬🇧|英国|英國|GBR|\bUK\b|Kingdom', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png}
-
-rules:
-  - RULE-SET,Speedtest,⏱️ 网络测速
+  - {name: "🇬🇧 英国节点", type: url-test, include-all: true, proxies: ["🟢 直连"], url: "http://www.gstatic.com/generate_204", interval: 300, filter: '(?i)🇬🇧|英国|英國|GBR|\bUK\b(?!R)|Kingdom', icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png}
   - RULE-SET,YouTube,🔍 谷歌服务
   - RULE-SET,Google,🔍 谷歌服务
   - RULE-SET,Microsoft,Ⓜ️ 微软服务
