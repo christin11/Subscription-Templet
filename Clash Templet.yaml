@@ -163,14 +163,14 @@ proxy-groups:
   - {name: "🍎 苹果服务", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_2.png}
   - {name: "📰 苹果新闻", type: select, proxies: ["🇺🇸 美国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_News.png}
   - {name: "🪙 贝宝支付", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/PayPal.png}
-  - {name: "🤖️ 人工智能", type: select, proxies: ["🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
+  - {name: "🤖️ 人工智能", type: select, proxies: ["🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
   - {name: "📤 Line消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Line.png}
   - {name: "📱 电报消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png}
   - {name: "🐦 Discord消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Discord.png}
   - {name: "👤 脸书消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Facebook.png}
   - {name: "📄 推特消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png}
   - {name: "📖 红迪消息", !!merge <<: *pr, icon: https://raw.githubusercontent.com/tugepaopao/Image-Storage/master/cartoon/Cute/reddit.png}
-  - {name: "🫟 TikTok", type: select, proxies: ["🇹🇼 台湾节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
+  - {name: "🫟 TikTok", type: select, proxies: ["🇹🇼 台湾节点", "🇯🇵 日本节点", "🇰🇷 韩国节点", "🇸🇬 新加坡节点", "🇹🇭 泰国节点", "🇺🇸 美国节点", "🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png}
   - {name: "🎻 Spotify", !!merge <<: *pr, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png}
   - {name: "🎹 JOOX", type: select, proxies: ["🇭🇰 香港节点", "🇹🇭 泰国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/JOOX.png}
   - {name: "🎷 Deezer", type: select, proxies: ["🇩🇪 德国节点", "🇬🇧 英国节点", "🚀 手动切换"], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/deezer.png}
